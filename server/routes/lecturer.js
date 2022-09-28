@@ -7,8 +7,9 @@ const v = new Validator()
 
 // Get Lecture Data
 router.get('/', async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*")
     const lecturers = await Lecturer.findAll();
-    return res.json(lecturers)
+    return res.json({data: lecturers})
 })
 
 // Post Lecturer Data
