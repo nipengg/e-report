@@ -7,9 +7,7 @@ const Lecturer = () => {
     const [lecturers, setLecturers] = useState([]);
 
     useEffect(() => {
-
         getData();
-
     }, [])
 
     const getData = () => {
@@ -17,7 +15,6 @@ const Lecturer = () => {
         .then((response) => {
             const data = response.data.data
             setLecturers(data);
-            console.log(lecturers)
         }).catch(error => console.error(`Error: ${error}`))
     }
 
