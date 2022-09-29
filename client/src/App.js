@@ -1,6 +1,5 @@
 import React from 'react'
-import { Lecturer, Home, Layout } from './pages'
-import ReactDOM from "react-dom/client";
+import { Lecturer, Home, Layout, Student } from './pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -11,6 +10,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lecturer" element={<Lecturer />} />
+          <Route path="/student" element={<Student />} />
         </Routes>
       </BrowserRouter>
     </>
