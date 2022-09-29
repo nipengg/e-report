@@ -5,6 +5,7 @@ const Lecturer = () => {
     const url = 'http://127.0.0.1:3000/'
 
     const [lecturers, setLecturers] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getData();
@@ -12,21 +13,43 @@ const Lecturer = () => {
 
     const getData = () => {
         axios.get(`${url}lecturer`)
-        .then((response) => {
-            const data = response.data.data
-            setLecturers(data);
-        }).catch(error => console.error(`Error: ${error}`))
+            .then((response) => {
+                const data = response.data.data
+                setLecturers(data);
+                setLoading(false);
+            }).catch(error => console.error(`Error: ${error}`))
     }
 
-  return (
-    <div>
-        { lecturers.map((lecturer, index) => {
-            return(
-                <h1 key={index}>{lecturer.lecturer_name}</h1>
-            )
-        }) }
-    </div>
-  )
+    return (
+        <div>
+            {loading == true ? 'loading...' : 
+            <table border='1'>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>name</td>
+                        <td>age</td>
+                        <td>address</td>
+                    </tr>
+                </thead>
+                {lecturers.map((lecturer, index) => {
+                    return (
+
+                        <tbody key={index}>
+                            <tr>
+                                <td>{lecturer.lecturer_id}</td>
+                                <td>{lecturer.lecturer_name}</td>
+                                <td>{lecturer.age}</td>
+                                <td>{lecturer.address}</td>
+                            </tr>
+                        </tbody>
+
+                    )
+                })}
+            </table>
+            }
+        </div>
+    )
 }
 
 export default Lecturer
