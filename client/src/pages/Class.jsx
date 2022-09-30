@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const Lecturer = () => {
+const Class = () => {
     const url = 'http://127.0.0.1:3000/'
 
-    const [lecturers, setLecturers] = useState([]);
+    const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -12,10 +12,10 @@ const Lecturer = () => {
     }, [])
 
     const getData = () => {
-        axios.get(`${url}lecturer`)
+        axios.get(`${url}class`)
             .then((response) => {
                 const data = response.data.data
-                setLecturers(data);
+                setData(data);
                 setLoading(false);
             }).catch(error => console.error(`Error: ${error}`))
     }
@@ -28,19 +28,17 @@ const Lecturer = () => {
                         <tr>
                             <td>id</td>
                             <td>name</td>
-                            <td>age</td>
-                            <td>address</td>
+                            <td>total student</td>
                         </tr>
                     </thead>
-                    {lecturers.map((lecturer, index) => {
+                    {data.map((item, index) => {
                         return (
 
                             <tbody key={index}>
                                 <tr>
-                                    <td>{lecturer.lecturer_id}</td>
-                                    <td>{lecturer.lecturer_name}</td>
-                                    <td>{lecturer.age}</td>
-                                    <td>{lecturer.address}</td>
+                                    <td>{item.class_id}</td>
+                                    <td>{item.class_name}</td>
+                                    <td>{item.total_student}</td>
                                 </tr>
                             </tbody>
 
@@ -52,4 +50,4 @@ const Lecturer = () => {
     )
 }
 
-export default Lecturer
+export default Class
