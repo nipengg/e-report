@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const City = () => {
+const Course = () => {
     const url = 'http://127.0.0.1:3000/'
 
     const [data, setData] = useState([])
@@ -12,7 +12,7 @@ const City = () => {
     }, [])
 
     const getData = () => {
-        axios.get(`${url}city`)
+        axios.get(`${url}course`)
             .then((response) => {
                 const data = response.data.data
                 setData(data);
@@ -28,6 +28,8 @@ const City = () => {
                         <tr>
                             <td>id</td>
                             <td>name</td>
+                            <td>scu</td>
+                            <td>lecturer</td>
                         </tr>
                     </thead>
                     {data.map((item, index) => {
@@ -35,8 +37,10 @@ const City = () => {
 
                             <tbody key={index}>
                                 <tr>
-                                    <td>{item.id}</td>
-                                    <td>{item.name}</td>
+                                    <td>{item.course_id}</td>
+                                    <td>{item.course_name}</td>
+                                    <td>{item.semester_credit_unit}</td>
+                                    <td>{item.lecturer.lecturer_name}</td>
                                 </tr>
                             </tbody>
 
@@ -48,4 +52,4 @@ const City = () => {
     )
 }
 
-export default City
+export default Course

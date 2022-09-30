@@ -8,7 +8,8 @@ const Layout = () => {
       <a href="/lecturer">lecturer</a> &nbsp;
       <a href="/student">student</a> &nbsp;
       <a href="/class">class</a> &nbsp;
-      <a href="/city">city</a>
+      <a href="/city">city</a> &nbsp;
+      <a href="/course">course</a>
     </>
   )
 }
