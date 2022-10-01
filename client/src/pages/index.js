@@ -1,7 +1,10 @@
-export { default as Lecturer } from './Lecturer';
+export { default as Lecturer } from './Lecture/Lecturer';
 export { default as Home } from './Home';
-export { default as Layout } from './Layout';
-export { default as Student } from './Student';
-export { default as Class } from './Class';
-export { default as City } from './City';
-export { default as Course } from './Course';
+export { default as Layout } from './Layout/Layout';
+export { default as Student } from './Student/Student';
+export { default as Class } from './Class/Class';
+export { default as City } from './City/City';
+export { default as Course } from './Course/Course';
+export { default as Score } from './Score/Score';
+export { default as Ipk } from './Ipk/Ipk';
+export { default as Footer } from './Layout/Footer';
