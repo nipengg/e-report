@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/esm/Container';
 const Lecturer = () => {
   const url = 'http://127.0.0.1:3000/'
 
-  const [lecturers, setLecturers] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Lecturer = () => {
     axios.get(`${url}lecturer`)
       .then((response) => {
         const data = response.data.data
-        setLecturers(data);
+        setData(data);
         setLoading(false);
       }).catch(error => console.error(`Error: ${error}`))
   }
@@ -35,7 +35,7 @@ const Lecturer = () => {
                 <th>Address</th>
               </tr>
             </thead>
-            {lecturers.map((lecturer, index) => {
+            {data.map((lecturer, index) => {
               return (
 
                 <tbody key={index}>

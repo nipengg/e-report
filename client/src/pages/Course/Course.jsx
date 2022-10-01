@@ -23,7 +23,7 @@ const Course = () => {
     }
 
     return (
-        <div>
+        <>
             <Container>
                 {loading === true ? <h1>Loading...</h1> :
                     <Table striped bordered hover>
@@ -52,7 +52,7 @@ const Course = () => {
                     </Table>
                 }
             </Container>
-        </div>
+        </>
     )
 }
 
