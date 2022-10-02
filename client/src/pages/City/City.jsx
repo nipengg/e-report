@@ -44,7 +44,7 @@ const City = () => {
     }
 
     return (
-        <div>
+        <>
             <Container>
                 {loading === true ? <h1>Loading...</h1> :
                     <>
@@ -95,7 +95,7 @@ const City = () => {
                     </>
                 }
             </Container>
-        </div>
+        </>
     )
 }
 
