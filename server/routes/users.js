@@ -1,9 +1,13 @@
-var express = require('express');
+var express = require('express')
+const { getUsers, register, login, logout } = require('../controller/users')
+const { verifyToken } = require('../middleware/VerifyToken')
+const { refreshToken } = require('../controller/refreshToken')
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/', verifyToken, getUsers);
+router.post('/', register);
+router.post('/login', login);
+router.get('/token', refreshToken);
+router.delete('/logout', logout);
 
 module.exports = router;
