@@ -1,5 +1,3 @@
-const { DataTypes } = require("sequelize");
-const Course = require("./Course");
 const City = require("./City");
 const Class = require("./Class")
 
