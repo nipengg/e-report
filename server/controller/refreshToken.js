@@ -2,6 +2,8 @@ const { User } = require('../models')
 const jwt = require('jsonwebtoken')
 
 const refreshToken = async (req, res) => {
+
+    res.header("Access-Control-Allow-Origin", "*")
     try {
 
         // Get refresh token from cookie

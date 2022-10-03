@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 
 const verifyToken = (req, res, next) => {
 
+    res.header("Access-Control-Allow-Origin", "*")
+
     // Request auth bearer from headers
     const authHeader = req.headers['authorization']
 
