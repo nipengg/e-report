@@ -8,3 +8,5 @@ export { default as Course } from './Course/Course';
 export { default as Score } from './Score/Score';
 export { default as Ipk } from './Ipk/Ipk';
 export { default as Footer } from './Layout/Footer';
+export { default as Login } from './Auth/Login';
+export { default as Register } from './Auth/Register';

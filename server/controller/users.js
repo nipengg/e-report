@@ -11,7 +11,7 @@ const v = new Validator({
 
 const getUsers = async (req, res) => {
     try {
-
+        res.header("Access-Control-Allow-Origin", "*")
         // Get all user by id, name, email
         const users = await User.findAll({
             attributes: ['id', 'name', 'email']
@@ -24,6 +24,8 @@ const getUsers = async (req, res) => {
 }
 
 const register = async (req, res) => {
+
+    res.header("Access-Control-Allow-Origin", "*")
 
     // Get data from body
     const { name, email, password, confirmPassword } = req.body
@@ -84,6 +86,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
 
+    res.header("Access-Control-Allow-Origin", "*")
+
     // Get data from body
     const { email, password } = req.body
 
@@ -138,6 +142,8 @@ const login = async (req, res) => {
 }
 
 const logout = async (req, res) => {
+
+    res.header("Access-Control-Allow-Origin", "*")
 
     // Get token in cookie
     const refreshToken = req.cookies.refreshToken
