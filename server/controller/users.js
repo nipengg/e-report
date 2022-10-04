@@ -25,7 +25,9 @@ const getUsers = async (req, res) => {
 
 const register = async (req, res) => {
 
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Content-Type', 'application/json')
+    res.header('Accept', 'application/json')
+    res.header('Origin', process.env.CLIENT_HOSTNAME)
 
     // Get data from body
     const { name, email, password, confirmPassword } = req.body
@@ -67,7 +69,7 @@ const register = async (req, res) => {
 
         // If user is exist with the same email then register is forbidden
         if (checkUser.length) {
-            return res.status(400).json({ validator: "Email already exist." })
+            return res.status(400).json({ message: "Email already exist" })
         }
 
         // Create User
@@ -86,7 +88,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
 
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Content-Type', 'application/json')
+    res.header('Accept', 'application/json')
+    res.header('Origin', process.env.CLIENT_HOSTNAME)
 
     // Get data from body
     const { email, password } = req.body
@@ -113,7 +117,7 @@ const login = async (req, res) => {
 
         // Create access token that expires in 20 seconds
         const accessToken = jwt.sign({ userId, name, emailUser }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '20s'
+            expiresIn: '60s'
         })
 
         // Create refresh token that expires in 1 day
@@ -137,13 +141,11 @@ const login = async (req, res) => {
         return res.json({ accessToken })
 
     } catch (error) {
-        return res.status(404).json({ message: "Email does not exist." })
+        return res.status(404).json({ error })
     }
 }
 
 const logout = async (req, res) => {
-
-    res.header("Access-Control-Allow-Origin", "*")
 
     // Get token in cookie
     const refreshToken = req.cookies.refreshToken
@@ -170,13 +172,13 @@ const logout = async (req, res) => {
 
     // Update token by user
     await User.update({
-        refreshToken: null,
+        refresh_token: null,
     }, {
         where: { id: userId },
     })
 
     // Clear Cookie
-    res.clearCookie('refresh_token')
+    res.clearCookie('refreshToken')
 
     return res.sendStatus(200);
 }

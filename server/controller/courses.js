@@ -5,7 +5,6 @@ const v = new Validator()
 
 const getCourse = async (req, res) => {
     try {
-        res.header("Access-Control-Allow-Origin", "*")
         const courses = await Course.findAll({
             include: [{
                 model: Lecturer,

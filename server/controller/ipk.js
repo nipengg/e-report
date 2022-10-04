@@ -5,7 +5,6 @@ const v = new Validator()
 
 const getIpk = async (req, res) => {
     try {
-        res.header("Access-Control-Allow-Origin", "*")
         const ipk = await Ipk.findAll({
             include: [{
                 model: Student,
