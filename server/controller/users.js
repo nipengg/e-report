@@ -117,7 +117,7 @@ const login = async (req, res) => {
 
         // Create access token that expires in 20 seconds
         const accessToken = jwt.sign({ userId, name, emailUser }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '20s'
+            expiresIn: '60s'
         })
 
         // Create refresh token that expires in 1 day
@@ -141,13 +141,11 @@ const login = async (req, res) => {
         return res.json({ accessToken })
 
     } catch (error) {
-        return res.status(404).json({ message: "Email does not exist." })
+        return res.status(404).json({ error })
     }
 }
 
 const logout = async (req, res) => {
-
-    res.header("Access-Control-Allow-Origin", "*")
 
     // Get token in cookie
     const refreshToken = req.cookies.refreshToken
@@ -174,13 +172,13 @@ const logout = async (req, res) => {
 
     // Update token by user
     await User.update({
-        refreshToken: null,
+        refresh_token: null,
     }, {
         where: { id: userId },
     })
 
     // Clear Cookie
-    res.clearCookie('refresh_token')
+    res.clearCookie('refreshToken')
 
     return res.sendStatus(200);
 }

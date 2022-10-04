@@ -5,7 +5,6 @@ const v = new Validator()
 
 const getStudent = async (req, res) => {
     try {
-        res.header("Access-Control-Allow-Origin", "*")
         const students = await Student.findAll({
             include: [{
                 model: City,

@@ -5,7 +5,6 @@ const v = new Validator()
 
 const getLecturer = async (req, res) => {
     try {
-        res.header("Access-Control-Allow-Origin", "*")
         const lecturers = await Lecturer.findAll();
         return res.json({ data: lecturers })
     } catch (error) {

@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 
 const refreshToken = async (req, res) => {
 
-    res.header("Access-Control-Allow-Origin", "*")
     try {
 
         // Get refresh token from cookie
@@ -11,7 +10,7 @@ const refreshToken = async (req, res) => {
 
         // Check if token is exist
         if (!refreshToken) {
-            return res.sendStatus(401) // Unauthorized
+            return res.status(401).json({ message: 'GA BISA AKSES HAHAHAHA' }) // Unauthorized
         }
 
         // Find user with the same refresh token in database
@@ -46,7 +45,8 @@ const refreshToken = async (req, res) => {
         })
 
     } catch (error) {
-        res.status(404).json({ message: error.message })
+        console.log(error)
+        res.status(404)
     }
 }
 

@@ -9,8 +9,8 @@ const Login = () => {
     const url = 'http://127.0.0.1:3000/'
 
     const navigate = useNavigate()
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('example@example.com')
+    const [password, setPassword] = useState('12345678')
     const [msg, setMsg] = useState('')
 
     const login = async (e) => {

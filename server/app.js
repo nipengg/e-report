@@ -7,7 +7,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 const corsOptions = {
-  origin: '*',
+  origin: process.env.CLIENT_HOSTNAME,
   credentials: true,
   optionSuccessStatus: 200,
 }
@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors(corsOptions));``
+app.use(cors(corsOptions));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

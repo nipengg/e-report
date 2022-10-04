@@ -6,8 +6,6 @@ const v = new Validator()
 
 const getCity = async (req, res) => {
     try {
-        res.header("Access-Control-Allow-Origin", "*")
-
         const page = parseInt(req.query.page) || 0;
         const limit = parseInt(req.query.limit) || 10;
         const search = req.query.search || '';
