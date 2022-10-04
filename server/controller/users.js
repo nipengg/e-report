@@ -27,7 +27,7 @@ const register = async (req, res) => {
 
     res.header('Content-Type', 'application/json')
     res.header('Accept', 'application/json')
-    res.header('Origin', 'http://localhost:3001')
+    res.header('Origin', process.env.CLIENT_HOSTNAME)
 
     // Get data from body
     const { name, email, password, confirmPassword } = req.body
@@ -88,7 +88,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
 
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Content-Type', 'application/json')
+    res.header('Accept', 'application/json')
+    res.header('Origin', process.env.CLIENT_HOSTNAME)
 
     // Get data from body
     const { email, password } = req.body
