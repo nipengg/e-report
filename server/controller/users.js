@@ -25,7 +25,9 @@ const getUsers = async (req, res) => {
 
 const register = async (req, res) => {
 
-    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Content-Type', 'application/json')
+    res.header('Accept', 'application/json')
+    res.header('Origin', 'http://localhost:3001')
 
     // Get data from body
     const { name, email, password, confirmPassword } = req.body
@@ -67,7 +69,7 @@ const register = async (req, res) => {
 
         // If user is exist with the same email then register is forbidden
         if (checkUser.length) {
-            return res.status(400).json({ validator: "Email already exist." })
+            return res.status(400).json({ message: "Email already exist" })
         }
 
         // Create User
