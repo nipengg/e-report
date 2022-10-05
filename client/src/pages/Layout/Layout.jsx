@@ -5,10 +5,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import Image from 'react-bootstrap/Image'
+
 
 const Layout = () => {
 
-  const url = 'http://127.0.0.1:3000/'
+  const url = 'http://localhost:3000/'
 
   const navigate = useNavigate()
 
@@ -22,8 +24,14 @@ const Layout = () => {
   }
 
   return (
-    <Navbar style={{ marginBottom: 15 }} bg="light" expand="lg">
+    <Navbar style={{ marginBottom: 15 }} bg="black" variant="dark" expand="lg">
       <Container>
+        <Image style={{ width: 30, height: 30, marginRight: 10 }}
+          src=
+          "/logo.png"
+          rounded
+        />
+
         <Navbar.Brand href="/">E-Report</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

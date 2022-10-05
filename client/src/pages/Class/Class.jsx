@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/esm/Container';
 
 const Class = () => {
-    const url = 'http://127.0.0.1:3000/'
+    const url = 'http://localhost:3000/'
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
