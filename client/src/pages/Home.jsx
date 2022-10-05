@@ -1,33 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
   const url = 'http://localhost:3000/'
 
-  const [name, setName] = useState('')
+  const navigate = useNavigate()
+
+  const [user, setUser] = useState([])
   const [token, setToken] = useState('')
 
   useEffect(() => {
     refreshToken()
   }, [])
 
-
   const refreshToken = async () => {
     try {
       const response = await axios.get(`${url}users/token`)
-      setToken(response.data.accessToken)
-      const decoded = jwt_decode(response.data.accessToken)
-      console.log(decoded)
+
+      if (response) {
+        setToken(response.data.accessToken)
+        const decoded = jwt_decode(response.data.accessToken)
+        setUser(decoded)
+      }
+
     } catch (error) {
-      console.log(error.response.data.message)
+      navigate('/login')
+      console.log(error)
     }
   }
 
   return (
-    <div>Home</div>
+    <div>
+      <h1>Welcome Back {user.name}</h1>
+    </div>
   )
 }
 

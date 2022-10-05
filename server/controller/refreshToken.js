@@ -10,7 +10,7 @@ const refreshToken = async (req, res) => {
 
         // Check if token is exist
         if (!refreshToken) {
-            return res.status(401).json({ message: 'GA BISA AKSES HAHAHAHA' }) // Unauthorized
+            return res.status(401).json({ message: 'No access, Please Sign In' }) // Unauthorized
         }
 
         // Find user with the same refresh token in database
