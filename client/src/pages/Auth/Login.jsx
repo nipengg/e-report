@@ -6,7 +6,7 @@ import "./style.css"
 
 const Login = () => {
 
-    const url = 'http://127.0.0.1:3000/'
+    const url = 'http://localhost:3000/' //cursed line
 
     const navigate = useNavigate()
     const [email, setEmail] = useState('example@example.com')
@@ -19,6 +19,8 @@ const Login = () => {
             await axios.post(`${url}users/login`, {
                 email: email,
                 password: password,
+            },{
+                withCredentials: true //correct
             })
 
             navigate('/')
