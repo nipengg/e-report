@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
 
 const City = () => {
-    const url = 'http://127.0.0.1:3000/'
+    const url = 'http://localhost:3000/'
 
     const [data, setData] = useState([])
     const [page, setPage] = useState(0)
