@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Image from 'react-bootstrap/Image'
 
 
-const Layout = () => {
+const Layout = ({ name }) => {
 
   const url = 'http://localhost:3000/'
 
@@ -46,7 +46,7 @@ const Layout = () => {
             <Nav.Link href="/ipk">IPK</Nav.Link>
           </Nav>
           <Nav>
-            <NavDropdown title="Username" id="basic-nav-dropdown">
+            <NavDropdown title={name} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={logout}>
