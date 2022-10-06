@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { useNavigate } from 'react-router-dom';
+import Layout from './Layout/Layout';
 
 const Home = () => {
 
@@ -33,9 +34,10 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <>
+      <Layout name={user.name} />
       <h1>Welcome Back {user.name}</h1>
-    </div>
+    </>
   )
 }
 
