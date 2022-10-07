@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import ReactPaginate from 'react-paginate'
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 import jwt_decode from 'jwt-decode'
 import Layout from '../Layout/Layout'
 import Container from 'react-bootstrap/esm/Container'
@@ -19,12 +22,19 @@ const Lecturer = () => {
 
   // Data state
   const [data, setData] = useState([])
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(10)
+  const [pages, setPages] = useState(0)
+  const [rows, setRows] = useState(0)
+  const [keyword, setKeyword] = useState('')
+  const [query, setQuery] = useState('')
+
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     refreshToken();
     if (check == true) getData()
-  }, [check])
+  }, [page, keyword, check])
 
   const refreshToken = async () => {
     try {
@@ -42,43 +52,87 @@ const Lecturer = () => {
     }
   }
 
-  const getData = () => {
-    axios.get(`${url}lecturer`)
-      .then((response) => {
-        const data = response.data.data
-        setData(data);
-        setLoading(false);
-      }).catch(error => console.error(`Error: ${error}`))
+  const getData = async () => {
+    const response = await axios.get(`${url}lecturer?search=${keyword}&page=${page}&limit=${limit}`)
+    setData(response.data.data)
+    setPage(response.data.page)
+    setLimit(response.data.limit)
+    setRows(response.data.totalRows)
+    setPages(response.data.totalPage)
+    setLoading(false)
+  }
+
+  const changePage = ({ selected }) => {
+    setPage(selected)
+  }
+
+  const searchData = (e) => {
+    e.preventDefault()
+    setPage(0)
+    setKeyword(query)
   }
 
   return (
     <>
       <Layout name={user.name} />
-      <Container>
-        {loading === true ? <h1>Loading...</h1> :
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Lecturer_id</th>
-                <th>Lecturer_name</th>
-                <th>Age</th>
-                <th>Address</th>
-              </tr>
-            </thead>
-            {data.map((lecturer, index) => {
-              return (
 
-                <tbody key={index}>
-                  <tr>
-                    <td>{lecturer.lecturer_id}</td>
-                    <td>{lecturer.lecturer_name}</td>
-                    <td>{lecturer.age}</td>
-                    <td>{lecturer.address}</td>
-                  </tr>
-                </tbody>
-              )
-            })}
-          </Table>
+      <Container style={{height: '100%'}}>
+        <h1>Lecturer</h1>
+        <hr />
+        {loading === true ? <h1>Loading...</h1> :
+          <>
+            <Form onSubmit={searchData}>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Search</Form.Label>
+                <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
+              </Form.Group>
+              <Button variant="primary" type="submit" style={{ marginRight: 10 }}>
+                Search
+              </Button>
+              <Button variant="danger">
+                Clear
+              </Button>
+            </Form>
+            <br />
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Lecturer_id</th>
+                  <th>Lecturer_name</th>
+                  <th>Age</th>
+                  <th>Address</th>
+                </tr>
+              </thead>
+              {data.map((lecturer, index) => {
+                return (
+
+                  <tbody key={index}>
+                    <tr>
+                      <td>{lecturer.lecturer_id}</td>
+                      <td>{lecturer.lecturer_name}</td>
+                      <td>{lecturer.age}</td>
+                      <td>{lecturer.address}</td>
+                    </tr>
+                  </tbody>
+                )
+              })}
+            </Table>
+            <p>Total Rows: {rows} &nbsp; &nbsp; Page: {rows ? page + 1 : 0} of {pages}</p>
+            <nav key={rows}>
+              <ReactPaginate
+                previousLabel={"< Prev"}
+                nextLabel={"Next >"}
+                pageCount={pages}
+                onPageChange={changePage}
+                containerClassName={"pagination pagination-md justify-content-center"}
+                pageLinkClassName={"page-link"}
+                previousLinkClassName={"page-link"}
+                nextLinkClassName={"page-link"}
+                activeLinkClassName={"page-link active"}
+                disabledLinkClassName={"page-link disabled"}
+              />
+            </nav>
+          </>
         }
       </Container>
     </>

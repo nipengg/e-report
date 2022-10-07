@@ -53,6 +53,11 @@ const getStudent = async (req, res) => {
                     }
                 ]
             },
+            offset: offset,
+            limit: limit,
+            order: [
+                ['nim', 'ASC'],
+            ],
             include: [{
                 model: City,
                 as: "city",
