@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
-import { useNavigate } from 'react-router-dom';
-import Layout from './Layout/Layout';
+import { useNavigate } from 'react-router-dom'
+import Layout from './Layout/Layout'
+import Container from 'react-bootstrap/esm/Container'
 
 const Home = () => {
 
@@ -36,7 +37,9 @@ const Home = () => {
   return (
     <>
       <Layout name={user.name} />
-      <h1>Welcome Back {user.name}</h1>
+      <Container>
+        <h1>Welcome Back {user.name}</h1>
+      </Container>
     </>
   )
 }
