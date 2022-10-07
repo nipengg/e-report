@@ -38,7 +38,7 @@ const Lecturer = () => {
       }
     } catch (error) {
       navigate('/login')
-      console.log(error)
+      console.log(error.response.data.message)
     }
   }
 
