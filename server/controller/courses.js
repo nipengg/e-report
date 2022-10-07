@@ -35,7 +35,6 @@ const getCourse = async (req, res) => {
         const totalPage = Math.ceil(totalRows / limit);
 
         const courses = await Course.findAll({
-            
             where: {
                 [Op.or]: [
                     {
@@ -50,19 +49,23 @@ const getCourse = async (req, res) => {
                     }
                 ]
             },
-            
+            offset: offset,
+            limit: limit,
+            order: [
+                ['course_id', 'ASC'],
+            ],
             include: [{
                 model: Lecturer,
                 as: 'lecturer',
             }],
         });
-        return res.json({ 
+        return res.json({
             data: courses,
             page: page,
             limit: limit,
             totalRows: totalRows,
             totalPage: totalPage,
-         })
+        })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

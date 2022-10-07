@@ -37,7 +37,10 @@ const Home = () => {
   return (
     <>
       <Layout name={user.name} />
+
       <Container>
+        <h1 style={{textAlign: 'center'}}>Home Page</h1>
+        <hr/>
         <h1>Welcome Back {user.name}</h1>
       </Container>
     </>

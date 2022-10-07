@@ -77,6 +77,8 @@ const City = () => {
         <>
             <Layout name={user.name} />
             <Container>
+                <h1>City</h1>
+                <hr/>
                 {loading === true ? <h1>Loading...</h1> :
                     <>
                         <Form onSubmit={searchData}>
@@ -84,8 +86,11 @@ const City = () => {
                                 <Form.Label>Search</Form.Label>
                                 <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
                             </Form.Group>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" type="submit" style={{marginRight: 10}}>
                                 Search
+                            </Button>
+                            <Button variant="danger">
+                                Clear
                             </Button>
                         </Form>
                         <br />

@@ -53,6 +53,11 @@ const getScore = async (req, res) => {
                     }
                 ]
             },
+            offset: offset,
+            limit: limit,
+            order: [
+                ['id', 'ASC'],
+            ],
             include: [{
                 model: Student,
                 as: "student",
