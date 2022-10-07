@@ -12,11 +12,14 @@ const Lecturer = () => {
 
   const navigate = useNavigate()
 
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+  // Auth State
   const [user, setUser] = useState([])
   const [token, setToken] = useState('')
   const [check, setCheck] = useState(false)
+
+  // Data state
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     refreshToken();
