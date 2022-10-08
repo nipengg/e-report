@@ -8,6 +8,8 @@ import Container from 'react-bootstrap/esm/Container'
 import jwt_decode from 'jwt-decode'
 import Layout from '../Layout/Layout'
 import { useNavigate } from 'react-router-dom'
+import { CDBSpinner } from 'cdbreact'
+import Footer from '../Layout/Footer'
 
 const Ipk = () => {
 
@@ -80,11 +82,11 @@ const Ipk = () => {
   return (
     <>
       <Layout name={user.name} />
-      <Container>
-        <h1>IPK</h1>
-        <hr />
-        {loading === true ? <h1>Loading...</h1> :
+      <Container style={{ height: "108vh" }}>
+        {loading === true ? <div style={{ textAlign: 'center', paddingTop: 250 }}><CDBSpinner dark /></div> :
           <>
+            <h1>IPK</h1>
+            <hr />
             <Form onSubmit={searchData}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Search</Form.Label>
@@ -142,6 +144,7 @@ const Ipk = () => {
           </>
         }
       </Container>
+      <Footer />
     </>
   )
 }

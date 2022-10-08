@@ -11,7 +11,9 @@ import jwt_decode from 'jwt-decode'
 import Layout from '../Layout/Layout'
 import { useNavigate } from 'react-router-dom'
 import ModalForm from './ModalForm'
-import Alert from 'react-bootstrap/Alert';
+import Alert from 'react-bootstrap/Alert'
+import { CDBSpinner } from 'cdbreact'
+import Footer from '../Layout/Footer'
 
 const City = () => {
 
@@ -91,21 +93,21 @@ const City = () => {
     return (
         <>
             <Layout name={user.name} />
-            <Container>
-                <Row>
-                    <Col sm={11}><h1>City</h1></Col>
-                    <Col sm={1}>
-                        <ModalForm token={token} setCheck={setCheck} setMsg={setMsg} setType={setType} />
-                    </Col>
-                </Row>
-                <hr />
-                {msg ?
-                    <Alert variant={type} onClose={() => setMsg('')} dismissible>
-                        {msg}
-                    </Alert>
-                : ''}
-                {loading === true ? <h1>Loading...</h1> :
+            <Container style={{ height: "106vh" }}>
+                {loading === true ? <div style={{ textAlign: 'center', paddingTop: 250 }}><CDBSpinner dark /></div> :
                     <>
+                        <Row>
+                            <Col sm={11}><h1>City</h1></Col>
+                            <Col sm={1}>
+                                <ModalForm token={token} setCheck={setCheck} setMsg={setMsg} setType={setType} />
+                            </Col>
+                        </Row>
+                        <hr />
+                        {msg ?
+                            <Alert variant={type} onClose={() => setMsg('')} dismissible>
+                                {msg}
+                            </Alert>
+                            : ''}
                         <Form onSubmit={searchData}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Search</Form.Label>
@@ -156,6 +158,7 @@ const City = () => {
                     </>
                 }
             </Container>
+            <Footer />
         </>
     )
 }
