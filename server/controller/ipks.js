@@ -16,7 +16,7 @@ const getIpk = async (req, res) => {
                 [Op.or]: [
 
                     {
-                        id: {
+                        ipk_id: {
                             [Op.like]: '%' + search + '%'
                         }
                     }
@@ -32,7 +32,7 @@ const getIpk = async (req, res) => {
                 [Op.or]: [
 
                     {
-                        id: {
+                        ipk_id: {
                             [Op.like]: '%' + search + '%'
                         }
                     }
@@ -41,7 +41,7 @@ const getIpk = async (req, res) => {
             offset: offset,
             limit: limit,
             order: [
-                ['id', 'ASC'],
+                ['ipk_id', 'ASC'],
             ],
             include: [{
                 model: Student,

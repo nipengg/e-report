@@ -4,7 +4,7 @@ const Course = require("./Course")
 
 module.exports = (sequelize, DataTypes) => {
     const Score = sequelize.define('Score', {
-        id: {
+        score_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -15,10 +15,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             refrences: {
                 model: Student,
-                key: 'nim',
+                key: 'student_nim',
             },
         },
-        semester: {
+        score_semester: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },

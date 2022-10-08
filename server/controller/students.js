@@ -15,12 +15,12 @@ const getStudent = async (req, res) => {
             where: {
                 [Op.or]: [
                     {
-                        nim: {
+                        student_nim: {
                             [Op.like]: '%' + search + '%'
                         },
                     },
                     {
-                        name: {
+                        student_name: {
                             [Op.like]: '%' + search + '%'
                         }
                     }
@@ -42,12 +42,12 @@ const getStudent = async (req, res) => {
             where: {
                 [Op.or]: [
                     {
-                        nim: {
+                        student_nim: {
                             [Op.like]: '%' + search + '%'
                         },
                     },
                     {
-                        name: {
+                        student_name: {
                             [Op.like]: '%' + search + '%'
                         }
                     }
@@ -56,7 +56,7 @@ const getStudent = async (req, res) => {
             offset: offset,
             limit: limit,
             order: [
-                ['nim', 'ASC'],
+                ['student_nim', 'ASC'],
             ],
             include: [{
                 model: City,

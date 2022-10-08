@@ -7,7 +7,8 @@ const refreshToken = async (req, res) => {
 
         // Get refresh token from cookie
         const refreshToken = req.cookies.refreshToken
-
+        
+        console.log(refreshToken);
         // Check if token is exist
         if (!refreshToken) {
             return res.status(401).json({ message: 'No access, Please Sign In' }) // Unauthorized

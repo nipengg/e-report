@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-const { getIpk } = require('../controller/ipk')
+const { getIpk } = require('../controller/ipks')
 
 router.get('/', getIpk)
 

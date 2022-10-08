@@ -117,7 +117,7 @@ const login = async (req, res) => {
 
         // Create access token that expires in 20 seconds
         const accessToken = jwt.sign({ userId, name, emailUser }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '60s'
+            expiresIn: '5m'
         })
 
         // Create refresh token that expires in 1 day

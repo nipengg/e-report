@@ -131,8 +131,8 @@ const City = () => {
 
                                     <tbody key={index}>
                                         <tr>
-                                            <td>{city.id}</td>
-                                            <td>{city.name}</td>
+                                            <td>{city.city_id}</td>
+                                            <td>{city.city_name}</td>
                                         </tr>
                                     </tbody>
                                 )

@@ -3,34 +3,38 @@ const Class = require("./Class")
 
 module.exports = (sequelize, DataTypes) => {
     const Student = sequelize.define('Student', {
-        nim: {
+        student_nim: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
         },
 
-        name: {
+        student_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
-        age: {
+        student_age: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
 
-        address: {
+        student_address: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
-        place_of_birth: {
-            type: DataTypes.STRING,
+        student_place_of_birth: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            refrences: {
+                model: City,
+                key: "city_id"
+            },
         },
 
-        date_of_birth: {
+        student_date_of_birth: {
             type: DataTypes.DATE,
             allowNull: false,
         },
