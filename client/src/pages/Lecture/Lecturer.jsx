@@ -72,11 +72,16 @@ const Lecturer = () => {
     setKeyword(query)
   }
 
+  const clearSearchbar = () => {
+    setKeyword('')
+    setQuery('')
+  }
+
   return (
     <>
       <Layout name={user.name} />
 
-      <Container style={{height: '100%'}}>
+      <Container style={{ height: '100%' }}>
         <h1>Lecturer</h1>
         <hr />
         {loading === true ? <h1>Loading...</h1> :
@@ -84,12 +89,12 @@ const Lecturer = () => {
             <Form onSubmit={searchData}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Search</Form.Label>
-                <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
+                <Form.Control type="text" placeholder="Search by lecturer name..." value={query} onChange={(e) => setQuery(e.target.value)} />
               </Form.Group>
               <Button variant="primary" type="submit" style={{ marginRight: 10 }}>
                 Search
               </Button>
-              <Button variant="danger">
+              <Button variant="danger" onClick={clearSearchbar}>
                 Clear
               </Button>
             </Form>
@@ -97,8 +102,8 @@ const Lecturer = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>Lecturer_id</th>
-                  <th>Lecturer_name</th>
+                  <th>Lecturer ID</th>
+                  <th>Lecturer name</th>
                   <th>Age</th>
                   <th>Address</th>
                 </tr>
