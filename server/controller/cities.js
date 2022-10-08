@@ -46,4 +46,31 @@ const getCity = async (req, res) => {
     }
 }
 
-module.exports = { getCity }
+const createCity = async (req, res) => {
+    const { name } = req.body
+
+    try {
+
+        // Add schema validator for template validation
+        const schema = {
+            name: { type: "string", min: 3, max: 255 },
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+        await City.create({
+            name: name,
+        })
+
+        return res.json({ message: 'Success!' })
+
+    } catch (error) {
+        return res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getCity, createCity }

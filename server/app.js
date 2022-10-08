@@ -9,7 +9,6 @@ var cors = require('cors');
 const corsOptions = {
   origin: process.env.CLIENT_HOSTNAME,
   credentials: true,
-  origin: "http://localhost:3001",
   optionSuccessStatus: 200,
 }
 
