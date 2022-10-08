@@ -72,23 +72,28 @@ const Class = () => {
         setKeyword(query)
     }
 
+    const clearSearchbar = () => {
+        setKeyword('')
+        setQuery('')
+    }
+
     return (
         <div>
             <Layout name={user.name} />
             <Container>
                 <h1>Class</h1>
-                <hr/>
+                <hr />
                 {loading === true ? <h1>Loading...</h1> :
                     <>
                         <Form onSubmit={searchData}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Search</Form.Label>
-                                <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
+                                <Form.Control type="text" placeholder="Search by name..." value={query} onChange={(e) => setQuery(e.target.value)} />
                             </Form.Group>
-                            <Button variant="primary" type="submit" style={{marginRight: 10}}>
+                            <Button variant="primary" type="submit" style={{ marginRight: 10 }}>
                                 Search
                             </Button>
-                            <Button variant="danger">
+                            <Button variant="danger" onClick={clearSearchbar}>
                                 Clear
                             </Button>
                         </Form>

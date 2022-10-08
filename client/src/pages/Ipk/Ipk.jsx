@@ -72,6 +72,11 @@ const Ipk = () => {
     setKeyword(query)
   }
 
+  const clearSearchbar = () => {
+    setKeyword('')
+    setQuery('')
+  }
+
   return (
     <>
       <Layout name={user.name} />
@@ -83,12 +88,12 @@ const Ipk = () => {
             <Form onSubmit={searchData}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Search</Form.Label>
-                <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
+                <Form.Control type="text" placeholder="Search by ID..." value={query} onChange={(e) => setQuery(e.target.value)} />
               </Form.Group>
               <Button variant="primary" type="submit" style={{ marginRight: 10 }}>
                 Search
               </Button>
-              <Button variant="danger">
+              <Button variant="danger" onClick={clearSearchbar}>
                 Clear
               </Button>
             </Form>

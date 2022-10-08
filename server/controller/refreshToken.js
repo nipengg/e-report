@@ -37,7 +37,7 @@ const refreshToken = async (req, res) => {
             const name = user[0].name
             const emailUser = user[0].email
             const accessToken = jwt.sign({ userId, name, emailUser }, process.env.ACCESS_TOKEN_SECRET, {
-                expiresIn: '15s'
+                expiresIn: '10m'
             })
 
             res.json({ accessToken })
