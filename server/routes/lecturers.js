@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-const { getLecturer, postLecturer } = require('../controller/lecturer')
+const { getLecturer, postLecturer } = require('../controller/lecturers')
 
 // Get Lecture Data
 router.get('/', getLecturer)

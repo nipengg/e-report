@@ -3,7 +3,7 @@ const Student = require("./Student");
 
 module.exports = (sequelize, DataTypes) => {
     const Ipk = sequelize.define("Ipk", {
-        id: {
+        ipk_id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             refrences: {
                 model: Student,
-                key: 'nim',
+                key: 'student_nim',
             },
         },
-        semester: {
+        ipk_semester: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        total_score: {
+        ipk_score: {
             type: DataTypes.FLOAT,
             allowNull: false,
         },

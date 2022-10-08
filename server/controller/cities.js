@@ -13,7 +13,7 @@ const getCity = async (req, res) => {
 
         const totalRows = await City.count({
             where: {
-                name: {
+                city_name: {
                     [Op.like]: '%' + search + '%'
                 }
             }
@@ -23,14 +23,14 @@ const getCity = async (req, res) => {
 
         const cities = await City.findAll({
             where: {
-                name: {
+                city_name: {
                     [Op.like]: '%' + search + '%'
                 }
             },
             offset: offset,
             limit: limit,
             order: [
-                ['id', 'ASC'],
+                ['city_id', 'ASC'],
             ]
         });
 
@@ -63,7 +63,7 @@ const createCity = async (req, res) => {
         }
 
         await City.create({
-            name: name,
+            city_name: name,
         })
 
         return res.json({ message: 'Success!' })

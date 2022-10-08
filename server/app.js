@@ -13,13 +13,13 @@ const corsOptions = {
 }
 
 var indexRouter = require('./routes/index');
-var lecturerRouter = require('./routes/lecturer');
+var lecturerRouter = require('./routes/lecturers');
 var usersRouter = require('./routes/users');
 var classRouter = require('./routes/classes');
 var citiesRouter = require('./routes/cities');
 var courseRouter = require('./routes/courses');
 var studentsRouter = require('./routes/students');
-var ipkRouter = require('./routes/ipk');
+var ipkRouter = require('./routes/ipks');
 var scoresRouter = require('./routes/scores');
 
 var app = express();

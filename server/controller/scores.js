@@ -15,7 +15,7 @@ const getScore = async (req, res) => {
             where: {
                 [Op.or]: [
                     {
-                        id: {
+                        score_id: {
                             [Op.like]: '%' + search + '%'
                         },
                     },
@@ -42,7 +42,7 @@ const getScore = async (req, res) => {
             where: {
                 [Op.or]: [
                     {
-                        id: {
+                        score_id: {
                             [Op.like]: '%' + search + '%'
                         },
                     },
@@ -56,7 +56,7 @@ const getScore = async (req, res) => {
             offset: offset,
             limit: limit,
             order: [
-                ['id', 'ASC'],
+                ['score_id', 'ASC'],
             ],
             include: [{
                 model: Student,
