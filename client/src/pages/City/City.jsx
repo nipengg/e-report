@@ -11,6 +11,7 @@ import jwt_decode from 'jwt-decode'
 import Layout from '../Layout/Layout'
 import { useNavigate } from 'react-router-dom'
 import ModalForm from './ModalForm'
+import Alert from 'react-bootstrap/Alert';
 
 const City = () => {
 
@@ -32,6 +33,8 @@ const City = () => {
     const [keyword, setKeyword] = useState('')
     const [query, setQuery] = useState('')
 
+    const [msg, setMsg] = useState('')
+    const [type, setType] = useState('')
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -87,10 +90,15 @@ const City = () => {
                 <Row>
                     <Col sm={11}><h1>City</h1></Col>
                     <Col sm={1}>
-                        <ModalForm />
+                        <ModalForm token={token} setCheck={setCheck} setMsg={setMsg} setType={setType} />
                     </Col>
                 </Row>
                 <hr />
+                {msg ?
+                    <Alert variant={type} onClose={() => setMsg('')} dismissible>
+                        {msg}
+                    </Alert>
+                : ''}
                 {loading === true ? <h1>Loading...</h1> :
                     <>
                         <Form onSubmit={searchData}>
