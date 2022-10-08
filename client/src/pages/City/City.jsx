@@ -3,11 +3,14 @@ import axios from 'axios'
 import ReactPaginate from 'react-paginate'
 import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
 import jwt_decode from 'jwt-decode'
 import Layout from '../Layout/Layout'
 import { useNavigate } from 'react-router-dom'
+import ModalForm from './ModalForm'
 
 const City = () => {
 
@@ -54,7 +57,11 @@ const City = () => {
     }
 
     const getData = async () => {
-        const response = await axios.get(`${url}city?search=${keyword}&page=${page}&limit=${limit}`)
+        const response = await axios.get(`${url}city?search=${keyword}&page=${page}&limit=${limit}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setData(response.data.data)
         setPage(response.data.page)
         setLimit(response.data.limit)
@@ -77,8 +84,13 @@ const City = () => {
         <>
             <Layout name={user.name} />
             <Container>
-                <h1>City</h1>
-                <hr/>
+                <Row>
+                    <Col sm={11}><h1>City</h1></Col>
+                    <Col sm={1}>
+                        <ModalForm />
+                    </Col>
+                </Row>
+                <hr />
                 {loading === true ? <h1>Loading...</h1> :
                     <>
                         <Form onSubmit={searchData}>
@@ -86,7 +98,7 @@ const City = () => {
                                 <Form.Label>Search</Form.Label>
                                 <Form.Control type="text" placeholder="Find anything here..." value={query} onChange={(e) => setQuery(e.target.value)} />
                             </Form.Group>
-                            <Button variant="primary" type="submit" style={{marginRight: 10}}>
+                            <Button variant="primary" type="submit" style={{ marginRight: 10 }}>
                                 Search
                             </Button>
                             <Button variant="danger">
