@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 import Layout from './Layout/Layout'
 import Container from 'react-bootstrap/esm/Container'
+import Footer from './Layout/Footer'
 
 const Home = () => {
 
@@ -38,11 +39,11 @@ const Home = () => {
     <>
       <Layout name={user.name} />
 
-      <Container>
-        <h1 style={{textAlign: 'center'}}>Home Page</h1>
+      <Container style={{ height: "108vh" }}>
+        <h1 style={{textAlign: 'center'}}>Welcome Back {user.name}</h1>
         <hr/>
-        <h1>Welcome Back {user.name}</h1>
       </Container>
+      <Footer />
     </>
   )
 }
