@@ -50,9 +50,9 @@ const getLecturer = async (req, res) => {
             limit: limit,
             order: [
                 ['lecturer_id', 'ASC'],
-            ] 
+            ]
         });
-        return res.json({ 
+        return res.json({
             data: lecturers,
             page: page,
             limit: limit,
@@ -65,10 +65,13 @@ const getLecturer = async (req, res) => {
 }
 
 const postLecturer = async (req, res) => {
+    const { lecturerName, lecturerAge, lecturerAddress } = req.body
+
     try {
         const schema = {
-            lecturer_name: 'string|required',
-            address: 'string|required',
+            lecturerName: 'string|required|max:255',
+            lecturerAge: 'number|required|',
+            lecturerAddress: 'string|required',
         }
 
         const validate = v.validate(req.body, schema)
@@ -77,7 +80,14 @@ const postLecturer = async (req, res) => {
             return res.status(400).json(validate)
         }
 
-        res.send('ok')
+        await Lecturer.create({
+            lecturer_name: lecturerName,
+            lecturer_age: lecturerAge,
+            lecturer_address: lecturerAddress,
+        })
+
+        return res.json({ message: 'Success!' })
+
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

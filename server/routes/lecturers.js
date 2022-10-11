@@ -6,6 +6,6 @@ const { getLecturer, postLecturer } = require('../controller/lecturers')
 router.get('/', getLecturer)
 
 // Post Lecturer Data
-router.post('/store', postLecturer)
+router.post('/', postLecturer)
 
 module.exports = router;
