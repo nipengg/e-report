@@ -51,7 +51,7 @@ const getClass = async (req, res) => {
                 ['class_id', 'ASC'],
             ]
         });
-        return res.json({ 
+        return res.json({
             data: classes,
             page: page,
             limit: limit,
@@ -63,4 +63,32 @@ const getClass = async (req, res) => {
     }
 }
 
-module.exports = { getClass }
+const createClass = async (req, res) => {
+    const { className, totalStudent } = req.body
+
+    try {
+        console.log(req.body)
+        const schema = {
+            className: 'string|required|max:255|min:3',
+            totalStudent: 'number|required',
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+        await Class.create({
+            class_name: className,
+            total_student: totalStudent,
+        })
+
+        return res.json({ message: 'Success!' })
+
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getClass, createClass }
