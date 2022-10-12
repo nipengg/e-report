@@ -1,4 +1,4 @@
-const { Course, Lecturer } = require('../models')
+const { Course } = require('../models')
 const { Op } = require('sequelize')
 const Validator = require('fastest-validator')
 
@@ -26,10 +26,6 @@ const getCourse = async (req, res) => {
                     }
                 ]
             },
-            include: [{
-                model: Lecturer,
-                as: 'lecturer',
-            }]
         });
 
         const totalPage = Math.ceil(totalRows / limit);
@@ -54,10 +50,6 @@ const getCourse = async (req, res) => {
             order: [
                 ['course_id', 'ASC'],
             ],
-            include: [{
-                model: Lecturer,
-                as: 'lecturer',
-            }],
         });
         return res.json({
             data: courses,

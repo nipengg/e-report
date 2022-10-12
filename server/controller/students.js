@@ -1,5 +1,4 @@
-const { Student, City, Class } = require('../models')
-
+const { Student, City } = require('../models')
 const Validator = require('fastest-validator')
 const { Op } = require('sequelize')
 const v = new Validator()
@@ -29,11 +28,7 @@ const getStudent = async (req, res) => {
             include: [{
                 model: City,
                 as: "city",
-            },
-            {
-                model: Class,
-                as: "class"
-            }],
+            },],
         });
 
         const totalPage = Math.ceil(totalRows / limit);
@@ -61,11 +56,7 @@ const getStudent = async (req, res) => {
             include: [{
                 model: City,
                 as: "city",
-            },
-            {
-                model: Class,
-                as: "class"
-            }],
+            },],
         })
         return res.json({ 
             data: students,

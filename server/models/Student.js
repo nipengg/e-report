@@ -1,12 +1,10 @@
 const City = require("./City");
-const Class = require("./Class")
 
 module.exports = (sequelize, DataTypes) => {
     const Student = sequelize.define('Student', {
         student_nim: {
             type: DataTypes.INTEGER,
             primaryKey: true,
-            autoIncrement: true,
             allowNull: false,
         },
 
@@ -20,13 +18,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
 
+        student_gender: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
         student_address: {
             type: DataTypes.STRING,
             allowNull: false,
         },
 
         student_place_of_birth: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             refrences: {
                 model: City,
@@ -46,16 +49,6 @@ module.exports = (sequelize, DataTypes) => {
                 key: "city_id"
             },
         },
-        class_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            refrences: {
-                model: Class,
-                key: "class_id"
-            },
-        },
-
-
     }, {
         tableName: 'students',
         timestamps: false,
@@ -63,7 +56,6 @@ module.exports = (sequelize, DataTypes) => {
 
     Student.associate = (models) => {
         Student.belongsTo(models.City, { foreignKey: 'city_id', as: "city" })
-        Student.belongsTo(models.Class, { foreignKey: "class_id", as: "class" })
     }
 
     return Student;
