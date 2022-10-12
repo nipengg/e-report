@@ -1,6 +1,4 @@
-const { DataTypes } = require("sequelize");
-const Student = require("./Student")
-const Course = require("./Course")
+const Enroll = require("./Enroll")
 
 module.exports = (sequelize, DataTypes) => {
     const Score = sequelize.define('Score', {
@@ -10,24 +8,16 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
-        nim: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            refrences: {
-                model: Student,
-                key: 'student_nim',
-            },
-        },
         score_semester: {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        course_id: {
+        enroll_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             refrences: {
-                model: Course,
-                key: 'course_id'
+                model: Enroll,
+                key: "enroll_id"
             },
         },
         score: {
@@ -39,8 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     });
     Score.associate = (models) => {
-        Score.belongsTo(models.Student, { foreignKey: 'nim', as: 'student' })
-        Score.belongsTo(models.Course, { foreignKey: 'course_id', as: 'course' } )
+        Score.belongsTo(models.Enroll, { foreignKey: 'enroll_id', as: 'enroll' })
     }
     return Score;
 }

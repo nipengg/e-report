@@ -1,5 +1,5 @@
 import React from 'react'
-import { Lecturer, Home, Layout, Student, Class, City, Course, Score, Ipk, Login, Register } from './pages'
+import { Lecturer, Home, Layout, Student, Class, City, Course, Score, Ipk, Login, Register, Enroll } from './pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -18,6 +18,7 @@ const App = () => {
             <Route path="/ipk" element={<Ipk />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/enroll" element={<Register />} />
           </Routes>
         </BrowserRouter>
     </>

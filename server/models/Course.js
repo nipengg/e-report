@@ -16,22 +16,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        lecturer_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            refrences: {
-                model: Lecturer,
-                key: 'lecturer_id',
-            },
-        },
     }, {
         tableName: 'courses',
         timestamps: false,
     });
-
-    Course.associate = (models) => {
-        Course.belongsTo(models.Lecturer, { foreignKey: 'lecturer_id', as: 'lecturer' })
-    }
 
     return Course;
 }
