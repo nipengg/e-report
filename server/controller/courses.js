@@ -64,11 +64,12 @@ const getCourse = async (req, res) => {
 }
 
 const createCourse = async (req, res) => {
-    const { courseName, semesterCreditUnit } = req.body
+    const { courseName, semesterCreditUnit, totalAttendance } = req.body
     try {
         const schema = {
             courseName: 'string|required|max:255|min:3',
-            semesterCreditUnit: 'number|required'
+            semesterCreditUnit: 'number|required',
+            totalAttendance: 'number|required'
         }
 
         const validate = v.validate(req.body, schema)
@@ -80,6 +81,7 @@ const createCourse = async (req, res) => {
         await Course.create({
             course_name: courseName,
             semester_credit_unit: semesterCreditUnit,
+            totalAttendance: totalAttendance,
         })
 
         return res.status(200).json({ message: 'Success!' })
