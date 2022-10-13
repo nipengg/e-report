@@ -102,11 +102,12 @@ const Score = () => {
             <Table striped bordered hover>
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>NIM</th>
-                  <th>Name</th>
-                  <th>Semester</th>
+                  <th>Score ID</th>
+                  <th>Score Semester</th>
+                  <th>Student</th>
                   <th>Course</th>
+                  <th>Lecturer</th>
+                  <th>Class</th>
                   <th>Score</th>
                 </tr>
               </thead>
@@ -115,11 +116,12 @@ const Score = () => {
 
                   <tbody key={index}>
                     <tr>
-                      <td>{item.id}</td>
-                      <td>{item.nim}</td>
-                      <td>{item.student.name}</td>
-                      <td>{item.semester}</td>
-                      <td>{item.course.course_name}</td>
+                      <td>{item.score_id}</td>
+                      <td>Semester-{item.score_semester}</td>
+                      <td>{item.enroll.nim} - {item.enroll.student.student_name}</td>
+                      <td>{item.enroll.course.course_name}</td>
+                      <td>{item.enroll.lecturer.lecturer_name}</td>
+                      <td>{item.enroll.class.class_name}</td>
                       <td>{item.score}</td>
                     </tr>
                   </tbody>

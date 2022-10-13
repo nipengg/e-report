@@ -116,8 +116,8 @@ const Lecturer = () => {
                     <tr>
                       <td>{lecturer.lecturer_id}</td>
                       <td>{lecturer.lecturer_name}</td>
-                      <td>{lecturer.age}</td>
-                      <td>{lecturer.address}</td>
+                      <td>{lecturer.lecturer_age}</td>
+                      <td>{lecturer.lecturer_address}</td>
                     </tr>
                   </tbody>
                 )

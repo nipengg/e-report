@@ -4,7 +4,7 @@ import { CDBFooter, CDBBox } from 'cdbreact'
 const Footer = () => {
   return (
     <CDBFooter className="shadow" style={{
-      position: '',
+      position: 'relative',
       left: 0,
       bottom: 0,
       right: 0,
