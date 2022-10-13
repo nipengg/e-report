@@ -61,4 +61,38 @@ const getIpk = async (req, res) => {
     }
 }
 
-module.exports = { getIpk }
+const createIpk = async (req, res) => {
+    const { id, nim, semester, score } = req.body
+
+    try {
+
+        // Add schema validator for template validation
+        const schema = {
+            id: 'number|required',
+            nim: 'number|required',
+            semester: 'number|required',
+            score: 'number|required',
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+
+        await Ipk.create({
+            ipk_id: id,
+            nim: nim,
+            ipk_semester: semester,
+            ipk_score: score,
+        })
+
+        return res.json({ message: 'Success!' })
+
+    } catch (error) {
+        return res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getIpk, createIpk }

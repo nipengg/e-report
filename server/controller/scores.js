@@ -80,4 +80,38 @@ const getScore = async (req, res) => {
     }
 }
 
-module.exports = { getScore }
+const createScore = async (req, res) => {
+    const { id, semester, enroll_id, score } = req.body
+
+    try {
+
+        // Add schema validator for template validation
+        const schema = {
+            id: 'number|required',
+            semester: 'number|required',
+            enroll_id: 'number|required',
+            score: 'number|required',
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+
+        await Score.create({
+            score_id: id,
+            score_semester: semester,
+            enroll_id: enroll_id,
+            score: score,
+        })
+
+        return res.json({ message: 'Success!' })
+
+    } catch (error) {
+        return res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getScore, createScore }
