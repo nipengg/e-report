@@ -63,4 +63,30 @@ const getCourse = async (req, res) => {
     }
 }
 
-module.exports = { getCourse }
+const createCourse = async (req, res) => {
+    const { courseName, semesterCreditUnit } = req.body
+    try {
+        const schema = {
+            courseName: 'string|required|max:255|min:3',
+            semesterCreditUnit: 'number|required'
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+        await Course.create({
+            course_name: courseName,
+            semester_credit_unit: semesterCreditUnit,
+        })
+
+        return res.status(200).json({ message: 'Success!' })
+
+    } catch (error) {
+        return res.status(404).json({ messsage: error.message })
+    }
+}
+
+module.exports = { getCourse, createCourse }
