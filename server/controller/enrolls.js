@@ -85,4 +85,41 @@ const getEnroll = async (req, res) => {
     }
 }
 
-module.exports = { getEnroll }
+const createEnroll = async (req, res) => {
+    const { enroll_id, nim, class_id, lecturer_id, course_id } = req.body
+
+    try {
+
+        // Add schema validator for template validation
+        const schema = {
+            enroll_id: 'number|required',
+            nim: 'number|required',
+            class_id: 'number|required',
+            lecturer_id: 'number|required',
+            course_id: 'number|required',
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json({ validator: validate })
+        }
+
+
+        await Enroll.create({
+            enroll_id: enroll_id,
+            nim: nim,
+            class_id: class_id,
+            lecturer_id: lecturer_id,
+            course_id: course_id,
+
+        })
+
+        return res.json({ message: 'Success!' })
+
+    } catch (error) {
+        return res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getEnroll, createEnroll }

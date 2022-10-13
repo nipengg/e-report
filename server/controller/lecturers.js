@@ -64,7 +64,7 @@ const getLecturer = async (req, res) => {
     }
 }
 
-const postLecturer = async (req, res) => {
+const createLecturer = async (req, res) => {
     const { lecturerName, lecturerAge, lecturerAddress } = req.body
 
     try {
@@ -93,4 +93,4 @@ const postLecturer = async (req, res) => {
     }
 }
 
-module.exports = { getLecturer, postLecturer }
+module.exports = { getLecturer, createLecturer }
