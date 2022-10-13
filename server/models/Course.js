@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        total_attendance: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
     }, {
         tableName: 'courses',
         timestamps: false,

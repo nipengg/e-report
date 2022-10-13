@@ -1,4 +1,4 @@
-const { Score, Enroll } = require('../models')
+const { Score, Enroll, Lecturer, Student, Course, Class } = require('../models')
 const { Op } = require('sequelize')
 const Validator = require('fastest-validator')
 
@@ -47,15 +47,34 @@ const getScore = async (req, res) => {
             include: [{
                 model: Enroll,
                 as: "enroll",
+                include: [
+                    {
+                        model: Student,
+                        as: 'student'
+                    },
+                    {
+                        model: Course,
+                        as: 'course'
+                    },
+                    {
+                        model: Lecturer,
+                        as: 'lecturer'
+                    },
+                    {
+                        model: Class,
+                        as: 'class'
+                    },
+                ]
             }],
         })
-        return res.json({ 
+
+        return res.json({
             data: scores,
             page: page,
             limit: limit,
             totalRows: totalRows,
             totalPage: totalPage,
-         })
+        })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }

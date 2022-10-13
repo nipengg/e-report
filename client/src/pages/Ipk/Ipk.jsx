@@ -105,9 +105,8 @@ const Ipk = () => {
                 <tr>
                   <th>ID</th>
                   <th>NIM</th>
-                  <th>Name</th>
-                  <th>Semester</th>
-                  <th>Total Score</th>
+                  <th>IP Semester</th>
+                  <th>IP Score</th>
                 </tr>
               </thead>
               {data.map((item, index) => {
@@ -115,11 +114,10 @@ const Ipk = () => {
 
                   <tbody key={index}>
                     <tr>
-                      <td>{item.id}</td>
+                      <td>{item.ipk_id}</td>
                       <td>{item.nim}</td>
-                      <td>{item.student.name}</td>
-                      <td>{item.semester}</td>
-                      <td>{item.total_score}</td>
+                      <td>{item.ipk_semester}</td>
+                      <td>{item.ipk_score}</td>
                     </tr>
                   </tbody>
 

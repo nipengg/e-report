@@ -107,7 +107,7 @@ const Course = () => {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>SCU</th>
-                                    <th>Lecturer</th>
+                                    <th>Total Attendance</th>
                                 </tr>
                             </thead>
                             {data.map((item, index) => {
@@ -118,7 +118,7 @@ const Course = () => {
                                             <td>{item.course_id}</td>
                                             <td>{item.course_name}</td>
                                             <td>{item.semester_credit_unit}</td>
-                                            <td>{item.lecturer.lecturer_name}</td>
+                                            <td>{item.total_attendance}</td>
                                         </tr>
                                     </tbody>
 

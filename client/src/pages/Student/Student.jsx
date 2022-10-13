@@ -106,11 +106,11 @@ const Student = () => {
                                     <th>NIM</th>
                                     <th>Name</th>
                                     <th>Age</th>
+                                    <th>Gender</th>
                                     <th>Address</th>
                                     <th>Place of Birth</th>
                                     <th>Date of Birth</th>
                                     <th>City</th>
-                                    <th>Class</th>
                                 </tr>
                             </thead>
                             {data.map((item, index) => {
@@ -118,14 +118,14 @@ const Student = () => {
 
                                     <tbody key={index}>
                                         <tr>
-                                            <td>{item.nim}</td>
-                                            <td>{item.name}</td>
-                                            <td>{item.age}</td>
-                                            <td>{item.address}</td>
-                                            <td>{item.place_of_birth}</td>
-                                            <td>{item.date_of_birth}</td>
-                                            <td>{item.city.name}</td>
-                                            <td>{item.class.class_name}</td>
+                                            <td>{item.student_nim}</td>
+                                            <td>{item.student_name}</td>
+                                            <td>{item.student_age}</td>
+                                            <td>{item.student_gender}</td>
+                                            <td>{item.student_address}</td>
+                                            <td>{item.city.city_name}</td>
+                                            <td>{item.student_date_of_birth}</td>
+                                            <td>{item.city.city_name}</td>
                                         </tr>
                                     </tbody>
 
