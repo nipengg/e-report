@@ -55,7 +55,11 @@ const Score = () => {
   }
 
   const getData = async () => {
-    const response = await axios.get(`${url}score?search=${keyword}&page=${page}&limit=${limit}`)
+    const response = await axios.get(`${url}score?search=${keyword}&page=${page}&limit=${limit}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
     setData(response.data.data)
     setPage(response.data.page)
     setLimit(response.data.limit)

@@ -55,7 +55,11 @@ const Course = () => {
     }
 
     const getData = async () => {
-        const response = await axios.get(`${url}course?search=${keyword}&page=${page}&limit=${limit}`)
+        const response = await axios.get(`${url}course?search=${keyword}&page=${page}&limit=${limit}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setData(response.data.data)
         setPage(response.data.page)
         setLimit(response.data.limit)
