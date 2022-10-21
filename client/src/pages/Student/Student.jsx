@@ -138,9 +138,9 @@ const Student = () => {
                                             <td>{item.student_age}</td>
                                             <td>{item.student_gender}</td>
                                             <td>{item.student_address}</td>
-                                            <td>{item.city.city_name}</td>
+                                            <td>{item.student_place_of_birth}</td>
                                             <td>{item.student_date_of_birth}</td>
-                                            <td>{item.city.city_name}</td>
+                                            <td>{item.city}</td>
                                         </tr>
                                     </tbody>
 

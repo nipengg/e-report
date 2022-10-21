@@ -10,11 +10,12 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
 
     const [show, setShow] = useState(false)
     const [name, setName] = useState('')
-    const [age, setAge] = useState(0)
+    const [age, setAge] = useState('')
     const [gender, setGender] = useState('')
     const [address, setAddress] = useState('')
-    const [pob, setPob] = useState(0)
+    const [pob, setPob] = useState('')
     const [dob, setDob] = useState(Date)
+    const [city, setCity] = useState('')
 
     const createData = async (e) => {
         e.preventDefault()
@@ -24,9 +25,9 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                 age: parseInt(age),
                 gender: gender,
                 address: address,
-                pob: parseInt(pob),
+                pob: pob,
                 dob: dob,
-                city: 1
+                city: city,
 
             }, {
                 headers: {
@@ -114,7 +115,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Place of Birth </Form.Label>
                             <Form.Control
-                                type="number"
+                                type="text"
                                 placeholder="Enter Place of Birth.."
                                 autoFocus
                                 value={pob}
@@ -130,6 +131,17 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                                 autoFocus
                                 value={dob}
                                 onChange={(e) => setDob(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label> City </Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter City of Residence.."
+                                autoFocus
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
                             />
                         </Form.Group>
                          

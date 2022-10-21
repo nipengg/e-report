@@ -1,4 +1,4 @@
-const { Student, City } = require('../models')
+const { Student } = require('../models')
 const Validator = require('fastest-validator')
 const { Op } = require('sequelize')
 const v = new Validator()
@@ -31,10 +31,6 @@ const getStudent = async (req, res) => {
                     }
                 ]
             },
-            include: [{
-                model: City,
-                as: "city",
-            },],
         });
 
         const totalPage = Math.ceil(totalRows / limit);
@@ -59,10 +55,6 @@ const getStudent = async (req, res) => {
             order: [
                 ['student_nim', 'ASC'],
             ],
-            include: [{
-                model: City,
-                as: "city",
-            },],
         })
         return res.json({ 
             data: students,
@@ -82,29 +74,34 @@ const createStudent = async (req, res) => {
         attributes: ['student_nim'],
         limit: 1,
         order: [['student_nim', "DESC"]]
-    });
+    });   
 
-    //Get current year, convert student_nim into 2 first digits to find year
-    //CurrentYear + 4 to account for graduation date
-    const currentDate = new Date();
-    const currentYear = (parseInt(currentDate.getFullYear()) % 1000) + 4;
-    const tempStr = String(getStudent[0].student_nim);
-    const nimYear = parseInt(tempStr.slice(0, 2));
-    console.log(getStudent[0].student_nim);
-    console.log(typeof getStudent[0].student_nim);
-    console.log("currentYear = %d, nimYear = %d", currentYear, nimYear);
-
-    //function to set newNim.
-    //If currentYear is newer than highest student nim or student nim doesn't exist, create new nim, else, old nim + 1.
     let newNim = 0;
-    if(getStudent[0].student_nim == NaN || currentYear != nimYear )
+    //Try to create newNim based on student_nim's value
+    try
     {
-        newNim = createNim();
-        console.log(newNim);
+        //Get current year, convert student_nim into 2 first digits to find year
+        //CurrentYear + 4 to account for graduation date
+        const currentDate = new Date();
+        const currentYear = (parseInt(currentDate.getFullYear()) % 1000) + 4;
+        const tempStr = String(getStudent[0].student_nim);
+        const nimYear = parseInt(tempStr.slice(0, 2));
+
+        //function to set newNim.
+        //If currentYear is newer than highest student nim or student nim doesn't exist, create new nim, else, old nim + 1.
+        if(currentYear != nimYear )
+        {
+            newNim = createNim();
+            console.log(newNim);
+        }
+        else {
+            newNim = getStudent[0].student_nim;
+            newNim += 1;
+        }
     }
-    else {
-        newNim = getStudent[0].student_nim;
-        newNim += 1;
+    //Student_nim doesn't exist, create a default nim value.
+    catch (error) {
+        newNim = createNim();
     }
     try {
 
@@ -114,9 +111,9 @@ const createStudent = async (req, res) => {
             age: 'number|required',
             gender: 'string|required|min:3|max:255',
             address: 'string|required',
-            pob: 'number|required',
+            pob: 'string|required',
             dob: 'string|required',
-            city: 'number|required',
+            city: 'string|required',
         }
 
         const validate = v.validate(req.body, schema)
@@ -135,7 +132,7 @@ const createStudent = async (req, res) => {
             student_address: address,
             student_place_of_birth: pob,
             student_date_of_birth: dobDate,
-            city_id: city,
+            city: city,
         })
 
         return res.json({ message: 'Success!' })
