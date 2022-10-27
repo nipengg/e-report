@@ -81,7 +81,7 @@ const createCourse = async (req, res) => {
         await Course.create({
             course_name: courseName,
             semester_credit_unit: semesterCreditUnit,
-            totalAttendance: totalAttendance,
+            total_attendance: totalAttendance,
         })
 
         return res.status(200).json({ message: 'Success!' })

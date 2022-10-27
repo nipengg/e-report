@@ -1,5 +1,5 @@
-export { default as Lecturer } from './Lecture/Lecturer';
-export { default as Home } from './home/Home';
+export { default as Lecturer } from './Lecturer/Lecturer';
+export { default as Home } from './Home/Home';
 export { default as Layout } from './Layout/Layout';
 export { default as Student } from './Student/Student';
 export { default as Class } from './Class/Class';
