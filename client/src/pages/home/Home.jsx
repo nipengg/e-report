@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import jwt_decode from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
-import Layout from './Layout/Layout'
+import Layout from '../Layout/Layout'
 import Container from 'react-bootstrap/esm/Container'
-import Footer from './Layout/Footer'
+import Footer from '../Layout/Footer'
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -49,7 +49,7 @@ const Home = () => {
         <Row className="justify-content-md-center">
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img style={{width: "180px" , height: "130px" }} variant="top" src="/picture/lecturer.png" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/lecturer.png" />
               <Card.Body>
                 <Card.Title>Lecturer</Card.Title>
                 <Card.Text>
@@ -62,7 +62,7 @@ const Home = () => {
           </Col>
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img style={{width: "180px" , height: "130px" }} variant="top" src="/picture/courses.png" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/courses.png" />
               <Card.Body>
                 <Card.Title>Course</Card.Title>
                 <Card.Text>
@@ -75,7 +75,7 @@ const Home = () => {
           </Col>
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/class.png" />
               <Card.Body>
                 <Card.Title>Class</Card.Title>
                 <Card.Text>
@@ -91,7 +91,7 @@ const Home = () => {
         <Row className="justify-content-md-center">
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/student.png" />
               <Card.Body>
                 <Card.Title>Student</Card.Title>
                 <Card.Text>
@@ -104,7 +104,7 @@ const Home = () => {
           </Col>
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/score.png" />
               <Card.Body>
                 <Card.Title>Score</Card.Title>
                 <Card.Text>
@@ -117,7 +117,7 @@ const Home = () => {
           </Col>
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Img style={{ width: "180px", height: "130px" }} variant="top" src="/picture/ipk.png" />
               <Card.Body>
                 <Card.Title>IPK</Card.Title>
                 <Card.Text>
