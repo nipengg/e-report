@@ -10,6 +10,10 @@ import Container from 'react-bootstrap/esm/Container'
 import { useNavigate } from 'react-router-dom'
 import { CDBSpinner } from 'cdbreact'
 import Footer from '../Layout/Footer'
+import Alert from 'react-bootstrap/Alert'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import ModalForm from './ModalForm'
 
 const Lecturer = () => {
 
@@ -31,6 +35,8 @@ const Lecturer = () => {
   const [keyword, setKeyword] = useState('')
   const [query, setQuery] = useState('')
 
+  const [msg, setMsg] = useState('')
+  const [type, setType] = useState('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -89,8 +95,18 @@ const Lecturer = () => {
       <Container style={{ height: "108vh" }}>
         {loading === true ? <div style={{ textAlign: 'center', paddingTop: 250 }}><CDBSpinner dark /></div> :
           <>
-            <h1>Lecturer</h1>
+            <Row>
+              <Col sm={11}><h1>Lecturer</h1></Col>
+              <Col sm={1}>
+                <ModalForm token={token} setCheck={setCheck} setMsg={setMsg} setType={setType} />
+              </Col>
+            </Row>
             <hr />
+            {msg ?
+              <Alert variant={type} onClose={() => setMsg('')} dismissible>
+                {msg}
+              </Alert>
+              : ''}
             <Form onSubmit={searchData}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Search</Form.Label>

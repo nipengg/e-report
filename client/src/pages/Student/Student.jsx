@@ -34,7 +34,7 @@ const Student = () => {
     const [rows, setRows] = useState(0)
     const [keyword, setKeyword] = useState('')
     const [query, setQuery] = useState('')
-    
+
     const [msg, setMsg] = useState('')
     const [type, setType] = useState('')
     const [loading, setLoading] = useState(true);
@@ -102,6 +102,11 @@ const Student = () => {
                             </Col>
                         </Row>
                         <hr />
+                        {msg ?
+                            <Alert variant={type} onClose={() => setMsg('')} dismissible>
+                                {msg}
+                            </Alert>
+                            : ''}
                         <Form onSubmit={searchData}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Search</Form.Label>
