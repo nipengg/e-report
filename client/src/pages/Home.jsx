@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom'
 import Layout from './Layout/Layout'
 import Container from 'react-bootstrap/esm/Container'
 import Footer from './Layout/Footer'
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 const Home = () => {
 
@@ -40,8 +44,92 @@ const Home = () => {
       <Layout name={user.name} />
 
       <Container style={{ height: "108vh" }}>
-        <h1 style={{textAlign: 'center'}}>Welcome Back {user.name}</h1>
-        <hr/>
+        <h1 style={{ textAlign: 'center' }}>Welcome Back {user.name}</h1>
+        <hr />
+        <Row className="justify-content-md-center">
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img style={{width: "180px" , height: "130px" }} variant="top" src="/picture/lecturer.png" />
+              <Card.Body>
+                <Card.Title>Lecturer</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img style={{width: "180px" , height: "130px" }} variant="top" src="/picture/courses.png" />
+              <Card.Body>
+                <Card.Title>Course</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>Class</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <br />
+        <Row className="justify-content-md-center">
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>Student</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>Score</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col md="auto" xs="auto" lg="auto">
+            <Card style={{ width: '18rem' }}>
+              <Card.Img variant="top" src="holder.js/100px180" />
+              <Card.Body>
+                <Card.Title>IPK</Card.Title>
+                <Card.Text>
+                  Some quick example text to build on the card title and make up the
+                  bulk of the card's content.
+                </Card.Text>
+                <Button variant="primary">Go somewhere</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+
       </Container>
       <Footer />
     </>

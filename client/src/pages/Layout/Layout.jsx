@@ -28,7 +28,7 @@ const Layout = ({ name }) => {
       <Container>
         <Image style={{ width: 30, height: 30, marginRight: 10 }}
           src=
-          "/logo.png"
+          "/picture/logo.png"
           rounded
         />
 
