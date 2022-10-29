@@ -56,7 +56,7 @@ const getStudent = async (req, res) => {
                 ['student_nim', 'ASC'],
             ],
         })
-        return res.json({ 
+        return res.json({
             data: students,
             page: page,
             limit: limit,
@@ -68,13 +68,29 @@ const getStudent = async (req, res) => {
     }
 }
 
+const showStudent = async (req, res) => {
+    try {
+        const name = req.params.name
+
+        const student = await Student.findAll({
+            where: {
+                student_name: name,
+            }
+        })
+
+        res.json({ data: student })
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 const createStudent = async (req, res) => {
     const { name, age, gender, address, pob, dob, city } = req.body
     const getStudent = await Student.findAll({
         attributes: ['student_nim'],
         limit: 1,
         order: [['student_nim', "DESC"]]
-    });   
+    });
 
     let newNim = 0;
     //Try to create newNim based on student_nim's value
@@ -142,4 +158,4 @@ const createStudent = async (req, res) => {
     }
 }
 
-module.exports = { getStudent, createStudent }
+module.exports = { getStudent, createStudent, showStudent }

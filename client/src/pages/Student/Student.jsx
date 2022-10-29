@@ -139,7 +139,7 @@ const Student = () => {
                                     <tbody key={index}>
                                         <tr>
                                             <td>{item.student_nim}</td>
-                                            <td>{item.student_name}</td>
+                                            <td><a href={'/student/' + item.student_name}>{item.student_name}</a></td>
                                             <td>{item.student_age}</td>
                                             <td>{item.student_gender}</td>
                                             <td>{item.student_address}</td>
