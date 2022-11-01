@@ -39,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        major: {
+            type: DataTypes.ENUM(['CS', 'BC', 'DKV']),
+            allowNull: false,
+        }
     }, {
         tableName: 'students',
         timestamps: false,

@@ -85,7 +85,8 @@ const showStudent = async (req, res) => {
 }
 
 const createStudent = async (req, res) => {
-    const { name, age, gender, address, pob, dob, city } = req.body
+    const { name, age, gender, address, pob, dob, city, major } = req.body
+
     const getStudent = await Student.findAll({
         attributes: ['student_nim'],
         limit: 1,
@@ -120,7 +121,6 @@ const createStudent = async (req, res) => {
         newNim = createNim();
     }
     try {
-
         // Add schema validator for template validation
         const schema = {
             name: 'string|required|max:255|min:3',
@@ -130,6 +130,7 @@ const createStudent = async (req, res) => {
             pob: 'string|required',
             dob: 'string|required',
             city: 'string|required',
+            major: 'string|required',
         }
 
         const validate = v.validate(req.body, schema)
@@ -149,6 +150,7 @@ const createStudent = async (req, res) => {
             student_place_of_birth: pob,
             student_date_of_birth: dobDate,
             city: city,
+            major: major,
         })
 
         return res.json({ message: 'Success!' })
