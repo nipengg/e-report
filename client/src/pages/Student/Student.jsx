@@ -125,12 +125,12 @@ const Student = () => {
                                 <tr>
                                     <th>NIM</th>
                                     <th>Name</th>
+                                    <th>Major</th>
                                     <th>Age</th>
                                     <th>Gender</th>
                                     <th>Address</th>
                                     <th>Place of Birth</th>
                                     <th>Date of Birth</th>
-                                    <th>City</th>
                                 </tr>
                             </thead>
                             {data.map((item, index) => {
@@ -140,12 +140,12 @@ const Student = () => {
                                         <tr>
                                             <td>{item.student_nim}</td>
                                             <td><a href={'/student/' + item.student_name}>{item.student_name}</a></td>
+                                            <td>{item.major}</td>
                                             <td>{item.student_age}</td>
                                             <td>{item.student_gender}</td>
                                             <td>{item.student_address}</td>
                                             <td>{item.student_place_of_birth}</td>
                                             <td>{item.student_date_of_birth}</td>
-                                            <td>{item.city}</td>
                                         </tr>
                                     </tbody>
 

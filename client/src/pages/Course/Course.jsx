@@ -126,6 +126,7 @@ const Course = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
+                                    <td>Major</td>
                                     <th>SCU</th>
                                     <th>Total Attendance</th>
                                 </tr>
@@ -136,7 +137,8 @@ const Course = () => {
                                     <tbody key={index}>
                                         <tr>
                                             <td>{item.course_id}</td>
-                                            <td>{item.course_name}</td>
+                                            <td>{item.course_name} - Semester {item.semester}</td>
+                                            <td>{item.major}</td>
                                             <td>{item.semester_credit_unit}</td>
                                             <td>{item.total_attendance}</td>
                                         </tr>

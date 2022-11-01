@@ -20,6 +20,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        semester: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        major: {
+            type: DataTypes.ENUM(['CS', 'BC', 'DKV']),
+            allowNull: false,
+        },
     }, {
         tableName: 'courses',
         timestamps: false,

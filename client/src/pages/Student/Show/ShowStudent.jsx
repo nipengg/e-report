@@ -84,6 +84,7 @@ const ShowStudent = () => {
                                                         <Card.Text>
                                                             <ListGroup variant="flush">
                                                                 <ListGroup.Item>NIM: {item.student_nim}</ListGroup.Item>
+                                                                <ListGroup.Item>Major: {item.major}</ListGroup.Item>
                                                                 <ListGroup.Item>Age: {item.student_age}</ListGroup.Item>
                                                                 <ListGroup.Item>Gender: {item.student_gender}</ListGroup.Item>
                                                                 <ListGroup.Item>City: {item.city}</ListGroup.Item>

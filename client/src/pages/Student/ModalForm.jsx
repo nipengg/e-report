@@ -16,6 +16,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
     const [pob, setPob] = useState('')
     const [dob, setDob] = useState(Date)
     const [city, setCity] = useState('')
+    const [major, setMajor] = useState('CS')
 
     const createData = async (e) => {
         e.preventDefault()
@@ -28,7 +29,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                 pob: pob,
                 dob: dob,
                 city: city,
-
+                major: major,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -60,7 +61,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                     <Modal.Title>Create Data</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={createData}>
-                <Modal.Body>
+                    <Modal.Body>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Name </Form.Label>
@@ -135,6 +136,15 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label> Major </Form.Label>
+                            <Form.Select aria-label="Default select example" onClick={(e) => setMajor(e.target.value)}>
+                                <option value="CS">Computer Science</option>
+                                <option value="BC">Business Creation</option>
+                                <option value="DKV">DKV</option>
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> City </Form.Label>
                             <Form.Control
                                 type="text"
@@ -144,14 +154,14 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                                 onChange={(e) => setCity(e.target.value)}
                             />
                         </Form.Group>
-                         
 
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button type="submit" variant="primary">
-                        Submit
-                    </Button>
-                </Modal.Footer>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type="submit" variant="primary">
+                            Submit
+                        </Button>
+                    </Modal.Footer>
                 </Form>
             </Modal>
         </>

@@ -12,6 +12,8 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
     const [name, setName] = useState('')
     const [scu, setScu] = useState('')
     const [totalAttendance, setTotalAttendance] = useState('')
+    const [semester, setSemester] = useState('')
+    const [major, setMajor] = useState('CS')
 
     const createData = async (e) => {
         e.preventDefault()
@@ -20,7 +22,8 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                 courseName: name,
                 semesterCreditUnit: parseInt(scu),
                 totalAttendance: parseInt(totalAttendance),
-
+                semester: parseInt(semester),
+                major: major,
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -84,7 +87,26 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                                 onChange={(e) => setTotalAttendance(e.target.value)}
                             />
                         </Form.Group>
-                         
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label> Semester </Form.Label>
+                            <Form.Control
+                                type="number"
+                                placeholder="Enter Course Semester.."
+                                value={semester}
+                                onChange={(e) => setSemester(e.target.value)}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                            <Form.Label> Major </Form.Label>
+                            <Form.Select aria-label="Default select example" onClick={(e) => setMajor(e.target.value)}>
+                                <option value="CS">Computer Science</option>
+                                <option value="BC">Business Creation</option>
+                                <option value="DKV">DKV</option>
+                            </Form.Select>
+                        </Form.Group>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button type="submit" variant="primary">
