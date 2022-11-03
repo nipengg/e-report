@@ -1,7 +1,8 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table';
+import ModalEnroll from '../Modal/ModalEnroll';
 
-const TableEnrolls = () => {
+const TableEnrolls = ({ student, token }) => {
     return (
         <>
             <Table striped bordered hover>
@@ -9,7 +10,7 @@ const TableEnrolls = () => {
                     <tr>
                         <th>#</th>
                         <th>Course</th>
-                        <th>Scores</th>
+                        <th>Class</th>
                         <th>Lecturer</th>
                     </tr>
                 </thead>
@@ -34,6 +35,7 @@ const TableEnrolls = () => {
                     </tr>
                 </tbody>
             </Table>
+            <ModalEnroll id={student} token={token} />
         </>
     )
 }
