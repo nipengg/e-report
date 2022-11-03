@@ -59,7 +59,6 @@ const ShowStudent = () => {
                 Authorization: `Bearer ${token}`,
             }
         })
-        console.log(response);
         setData(response.data.data)
         setLoading(false)
     }
@@ -112,7 +111,7 @@ const ShowStudent = () => {
                                                 {(() => {
                                                     if (key == 'enroll') {
                                                         return (
-                                                            <TableEnrolls />
+                                                            <TableEnrolls student={item.student_nim} token={token} />
                                                         )
                                                     } else if (key == 'scores') {
                                                         return (

@@ -62,7 +62,7 @@ const getStudent = async (req, res) => {
             limit: limit,
             totalRows: totalRows,
             totalPage: totalPage,
-         })
+        })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
@@ -94,9 +94,9 @@ const createStudent = async (req, res) => {
     });
 
     let newNim = 0;
+
     //Try to create newNim based on student_nim's value
-    try
-    {
+    try {
         //Get current year, convert student_nim into 2 first digits to find year
         //CurrentYear + 4 to account for graduation date
         const currentDate = new Date();
@@ -106,8 +106,7 @@ const createStudent = async (req, res) => {
 
         //function to set newNim.
         //If currentYear is newer than highest student nim or student nim doesn't exist, create new nim, else, old nim + 1.
-        if(currentYear != nimYear )
-        {
+        if (currentYear != nimYear) {
             newNim = createNim();
             console.log(newNim);
         }
