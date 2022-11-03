@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Select from 'react-select'
 import axios from 'axios'
 
-const ModalEnroll = ({ id, token }) => {
+const ModalEnroll = ({ id, token, setCheck }) => {
 
     const url = 'http://localhost:3000/'
 
@@ -55,8 +55,11 @@ const ModalEnroll = ({ id, token }) => {
                 }
             })
             setShow(false)
+            setCheck(true)
         } catch (error) {
+            console.log(error)
             setShow(false)
+            setCheck(true)
         }
     }
 

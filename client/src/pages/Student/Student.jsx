@@ -133,11 +133,10 @@ const Student = () => {
                                     <th>Date of Birth</th>
                                 </tr>
                             </thead>
-                            {data.map((item, index) => {
-                                return (
-
-                                    <tbody key={index}>
-                                        <tr>
+                            <tbody>
+                                {data.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
                                             <td>{item.student_nim}</td>
                                             <td><a href={'/student/' + item.student_name}>{item.student_name}</a></td>
                                             <td>{item.major}</td>
@@ -147,10 +146,9 @@ const Student = () => {
                                             <td>{item.student_place_of_birth}</td>
                                             <td>{item.student_date_of_birth}</td>
                                         </tr>
-                                    </tbody>
-
-                                )
-                            })}
+                                    )
+                                })}
+                            </tbody>
                         </Table>
                         <p>Total Rows: {rows} &nbsp; &nbsp; Page: {rows ? page + 1 : 0} of {pages}</p>
                         <nav key={rows}>

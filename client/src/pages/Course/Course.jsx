@@ -131,21 +131,20 @@ const Course = () => {
                                     <th>Total Attendance</th>
                                 </tr>
                             </thead>
-                            {data.map((item, index) => {
-                                return (
-
-                                    <tbody key={index}>
-                                        <tr>
+                            <tbody>
+                                {data.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
                                             <td>{item.course_id}</td>
                                             <td>{item.course_name} - Semester {item.semester}</td>
                                             <td>{item.major}</td>
                                             <td>{item.semester_credit_unit}</td>
                                             <td>{item.total_attendance}</td>
                                         </tr>
-                                    </tbody>
 
-                                )
-                            })}
+                                    )
+                                })}
+                            </tbody>
                         </Table>
                         <p>Total Rows: {rows} &nbsp; &nbsp; Page: {rows ? page + 1 : 0} of {pages}</p>
                         <nav key={rows}>

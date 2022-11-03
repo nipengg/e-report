@@ -128,19 +128,17 @@ const Class = () => {
                                     <th>Total Student</th>
                                 </tr>
                             </thead>
-                            {data.map((item, index) => {
-                                return (
-
-                                    <tbody key={index}>
-                                        <tr>
+                            <tbody>
+                                {data.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
                                             <td>{item.class_id}</td>
                                             <td>{item.class_name}</td>
                                             <td>{item.total_student}</td>
                                         </tr>
-                                    </tbody>
-
-                                )
-                            })}
+                                    )
+                                })}
+                            </tbody>
                         </Table>
                         <p>Total Rows: {rows} &nbsp; &nbsp; Page: {rows ? page + 1 : 0} of {pages}</p>
                         <nav key={rows}>

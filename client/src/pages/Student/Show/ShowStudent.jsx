@@ -111,7 +111,7 @@ const ShowStudent = () => {
                                                 {(() => {
                                                     if (key == 'enroll') {
                                                         return (
-                                                            <TableEnrolls student={item.student_nim} token={token} />
+                                                            <TableEnrolls id={item.student_nim} token={token} />
                                                         )
                                                     } else if (key == 'scores') {
                                                         return (

@@ -18,11 +18,11 @@ const App = () => {
             <Route path="/class" element={<Class />} />
             <Route path="/city" element={<City />} />
             <Route path="/course" element={<Course />} />
-            <Route path="/score" element={<Score />} />
-            <Route path="/ipk" element={<Ipk />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/enroll" element={<Register />} />
+            <Route path="/score" element={<Score />} />
+            <Route path="/ipk" element={<Ipk />} />
           </Routes>
         </BrowserRouter>
     </>

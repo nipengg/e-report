@@ -38,12 +38,9 @@ const Layout = ({ name }) => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/lecturer">Lecturer</Nav.Link>
-            {/* <Nav.Link href="/city">City</Nav.Link> */}
             <Nav.Link href="/course">Course</Nav.Link>
             <Nav.Link href="/class">Class</Nav.Link>
             <Nav.Link href="/student">Student</Nav.Link>
-            <Nav.Link href="/score">Score</Nav.Link>
-            <Nav.Link href="/ipk">IPK</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title={name} id="basic-nav-dropdown">

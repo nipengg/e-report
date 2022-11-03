@@ -1,4 +1,4 @@
-const { Course, Lecturer, Class, Student, Enroll} = require('../models')
+const { Course, Lecturer, Class, Student, Enroll } = require('../models')
 const { Op } = require('sequelize')
 const Validator = require('fastest-validator')
 
@@ -116,6 +116,39 @@ const createStudentEnroll = async (req, res) => {
     }
 }
 
+const getStudentEnroll = async (req, res) => {
+    try {
+        const nim = req.query.nim
+
+        const enrollStudent = await Enroll.findAll({
+            where: {
+                nim: nim,
+            },
+            include: [{
+                model: Lecturer,
+                as: 'lecturer',
+            },
+            {
+                model: Class,
+                as: 'class'
+            },
+            {
+                model: Course,
+                as: "course"
+            },
+            {
+                model: Student,
+                as: "student"
+            }],
+        })
+
+        return res.json({ data: enrollStudent })
+
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 const createEnroll = async (req, res) => {
     const { nim, class_id, lecturer_id, course_id } = req.body
 
@@ -148,4 +181,4 @@ const createEnroll = async (req, res) => {
     }
 }
 
-module.exports = { getEnroll, createEnroll, createStudentEnroll }
+module.exports = { getEnroll, createEnroll, createStudentEnroll, getStudentEnroll }

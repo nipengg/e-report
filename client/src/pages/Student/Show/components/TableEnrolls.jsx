@@ -1,41 +1,66 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table';
-import ModalEnroll from '../Modal/ModalEnroll';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import Table from 'react-bootstrap/Table'
+import ModalEnroll from '../Modal/ModalEnroll'
+import { CDBSpinner } from 'cdbreact'
 
-const TableEnrolls = ({ student, token }) => {
+const TableEnrolls = ({ id, token }) => {
+
+    const url = 'http://localhost:3000/'
+
+    const [data, setData] = useState([])
+    const [check, setCheck] = useState(false)
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getData()
+    }, [check])
+
+
+    const getData = async () => {
+        try {
+            const response = await axios.get(`${url}enroll/e/student?nim=${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            setData(response.data.data)
+            setLoading(false)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Course</th>
-                        <th>Class</th>
-                        <th>Lecturer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Algorithm</td>
-                        <td>LA20</td>
-                        <td>Wina Permata Sari</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Program Design Method</td>
-                        <td>LA20</td>
-                        <td>Sidharta</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Calculus</td>
-                        <td>LA20</td>
-                        <td>Aldiki</td>
-                    </tr>
-                </tbody>
-            </Table>
-            <ModalEnroll id={student} token={token} />
+            {loading === true ? <div style={{ textAlign: 'center', paddingTop: 100 }}><CDBSpinner dark /></div> :
+                <>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Course</th>
+                                <th>Class</th>
+                                <th>Lecturer</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                            {data.map((item, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td>{item.enroll_id}</td>
+                                        <td>{item.course.course_name}</td>
+                                        <td>{item.class.class_name}</td>
+                                        <td>{item.lecturer.lecturer_name}</td>
+                                    </tr>
+
+                                )
+                            })}
+                        </tbody>
+                    </Table>
+                    <ModalEnroll id={id} token={token} setCheck={setCheck} />
+                </>
+            }
         </>
     )
 }
