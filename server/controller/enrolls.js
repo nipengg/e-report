@@ -117,13 +117,11 @@ const createStudentEnroll = async (req, res) => {
 }
 
 const createEnroll = async (req, res) => {
-    const { enroll_id, nim, class_id, lecturer_id, course_id } = req.body
+    const { nim, class_id, lecturer_id, course_id } = req.body
 
     try {
-
         // Add schema validator for template validation
         const schema = {
-            enroll_id: 'number|required',
             nim: 'number|required',
             class_id: 'number|required',
             lecturer_id: 'number|required',
@@ -136,14 +134,11 @@ const createEnroll = async (req, res) => {
             return res.status(400).json({ validator: validate })
         }
 
-
         await Enroll.create({
-            enroll_id: enroll_id,
             nim: nim,
             class_id: class_id,
             lecturer_id: lecturer_id,
             course_id: course_id,
-
         })
 
         return res.json({ message: 'Success!' })

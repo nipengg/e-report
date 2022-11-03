@@ -62,7 +62,6 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                 </Modal.Header>
                 <Form onSubmit={createData}>
                     <Modal.Body>
-
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Name </Form.Label>
                             <Form.Control

@@ -10,6 +10,13 @@ const ModalEnroll = ({ id, token }) => {
     const url = 'http://localhost:3000/'
 
     const [show, setShow] = useState(false)
+
+    // Data State
+    const [course, setCourse] = useState('')
+    const [lecturer, setLecturer] = useState('')
+    const [classR, setClassR] = useState('')
+
+    // Option State
     const [dataCourse, setDataCourse] = useState([])
     const [dataLecturer, setDataLecturer] = useState([])
     const [dataClass, setDataClass] = useState([])
@@ -34,6 +41,25 @@ const ModalEnroll = ({ id, token }) => {
         setDataClass(response.data.class)
     }
 
+    const createData = async (e) => {
+        e.preventDefault()
+        try {
+            await axios.post(`${url}enroll`, {
+                nim: id,
+                class_id: classR,
+                lecturer_id: lecturer,
+                course_id: course,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            setShow(false)
+        } catch (error) {
+            setShow(false)
+        }
+    }
+
     const courseOptions = dataCourse.map(function (course) {
         return { value: course.course_id, label: `${course.course_name} - Semester ${course.semester}` }
     })
@@ -54,19 +80,17 @@ const ModalEnroll = ({ id, token }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Add Enrolls</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <Form>
+                <Form onSubmit={createData}>
+                    <Modal.Body>
+
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Course</Form.Label>
                             <Select
                                 className="basic-single"
                                 classNamePrefix="select"
-                                isDisabled={false}
-                                isLoading={false}
-                                isClearable={true}
-                                isRtl={false}
                                 isSearchable={true}
-                                name="color"
+                                name="course"
+                                onChange={(e) => setCourse(e.value)}
                                 options={courseOptions}
                             />
                         </Form.Group>
@@ -75,12 +99,9 @@ const ModalEnroll = ({ id, token }) => {
                             <Select
                                 className="basic-single"
                                 classNamePrefix="select"
-                                isDisabled={false}
-                                isLoading={false}
-                                isClearable={true}
-                                isRtl={false}
                                 isSearchable={true}
-                                name="color"
+                                name="lecturer"
+                                onChange={(e) => setLecturer(e.value)}
                                 options={lecturerOptions}
                             />
                         </Form.Group>
@@ -89,22 +110,19 @@ const ModalEnroll = ({ id, token }) => {
                             <Select
                                 className="basic-single"
                                 classNamePrefix="select"
-                                isDisabled={false}
-                                isLoading={false}
-                                isClearable={true}
-                                isRtl={false}
                                 isSearchable={true}
-                                name="color"
+                                name="class"
+                                onChange={(e) => setClassR(e.value)}
                                 options={classOptions}
                             />
                         </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type="submit" variant="primary">
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Form>
             </Modal>
         </>
     )
