@@ -129,19 +129,20 @@ const Lecturer = () => {
                   <th>Address</th>
                 </tr>
               </thead>
-              {data.map((lecturer, index) => {
-                return (
+              <tbody>
+                {data.map((lecturer, index) => {
+                  return (
 
-                  <tbody key={index}>
-                    <tr>
+                    <tr key={index}>
                       <td>{lecturer.lecturer_id}</td>
                       <td>{lecturer.lecturer_name}</td>
                       <td>{lecturer.lecturer_age}</td>
                       <td>{lecturer.lecturer_address}</td>
                     </tr>
-                  </tbody>
-                )
-              })}
+
+                  )
+                })}
+              </tbody>
             </Table>
             <p>Total Rows: {rows} &nbsp; &nbsp; Page: {rows ? page + 1 : 0} of {pages}</p>
             <nav key={rows}>
