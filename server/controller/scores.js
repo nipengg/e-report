@@ -80,6 +80,51 @@ const getScore = async (req, res) => {
     }
 }
 
+const getStudentScores = async (req, res) => {
+    try {
+        const nim = req.query.nim
+
+        const enrollStudent = await Enroll.findAll({
+            where: {
+                nim: nim,
+            },
+            attributes: ['enroll_id'],
+            include: [{
+                model: Lecturer,
+                as: 'lecturer',
+            },
+            {
+                model: Class,
+                as: 'class'
+            },
+            {
+                model: Course,
+                as: "course"
+            }],
+        })
+
+        let scoreStudent = []
+
+        for (let i = 0; i < enrollStudent.length; i++) {
+            scoreStudent[i] = await Score.findAll({
+                attributes: ['score_id', 'score_semester', 'score'],
+                include: [{
+                    model: Enroll,
+                    as: 'enroll'
+                }],
+                where: {
+                    enroll_id: enrollStudent[i].enroll_id
+                }
+            })
+        }
+
+        return res.json({ data: enrollStudent, score: scoreStudent })
+
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
 const createScore = async (req, res) => {
     const { id, semester, enroll_id, score } = req.body
 
@@ -114,4 +159,4 @@ const createScore = async (req, res) => {
     }
 }
 
-module.exports = { getScore, createScore }
+module.exports = { getScore, createScore, getStudentScores }

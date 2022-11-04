@@ -28,8 +28,10 @@ module.exports = (sequelize, DataTypes) => {
         tableName: 'scores',
         timestamps: false,
     });
+
     Score.associate = (models) => {
         Score.belongsTo(models.Enroll, { foreignKey: 'enroll_id', as: 'enroll' })
     }
+
     return Score;
 }

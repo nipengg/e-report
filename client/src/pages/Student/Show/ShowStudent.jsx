@@ -115,7 +115,7 @@ const ShowStudent = () => {
                                                         )
                                                     } else if (key == 'scores') {
                                                         return (
-                                                            <TableScores />
+                                                            <TableScores id={item.student_nim} token={token} />
                                                         )
                                                     } else if (key == 'ipk') {
                                                         return (
