@@ -176,4 +176,25 @@ const createScore = async (req, res) => {
     }
 }
 
-module.exports = { getScore, createScore, getStudentScores }
+const updateScore = async (req, res) => {
+    const { value } = req.body
+    try {
+        const id = req.query.id
+
+        const scoreData = await Score.update(
+            {
+                score: value
+            },
+            {
+                where: { score_id: id }
+            }
+        )
+        console.log(value)
+        return res.status(200).json({ message: "Success!" })
+    }
+    catch (error) {
+        return res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getScore, createScore, getStudentScores, updateScore }
