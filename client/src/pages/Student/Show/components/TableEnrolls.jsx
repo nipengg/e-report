@@ -48,12 +48,11 @@ const TableEnrolls = ({ id, token }) => {
                             {data.map((item, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{item.enroll_id}</td>
+                                        <td>{index + 1}</td>
                                         <td>{item.course.course_name}</td>
                                         <td>{item.class.class_name}</td>
                                         <td>{item.lecturer.lecturer_name}</td>
                                     </tr>
-
                                 )
                             })}
                         </tbody>

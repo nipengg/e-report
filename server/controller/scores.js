@@ -104,21 +104,38 @@ const getStudentScores = async (req, res) => {
         })
 
         let scoreStudent = []
+        let temp
 
         for (let i = 0; i < enrollStudent.length; i++) {
-            scoreStudent[i] = await Score.findAll({
+            temp = await Score.findAll({
                 attributes: ['score_id', 'score_semester', 'score'],
                 include: [{
                     model: Enroll,
-                    as: 'enroll'
+                    as: 'enroll',
+                    attributes: ['enroll_id', 'nim'],
+                    include: [
+                        {
+                            model: Course,
+                            as: 'course'
+                        },
+                        {
+                            model: Lecturer,
+                            as: 'lecturer'
+                        },
+                        {
+                            model: Class,
+                            as: 'class'
+                        },
+                    ]
                 }],
                 where: {
                     enroll_id: enrollStudent[i].enroll_id
                 }
             })
+            scoreStudent[i] = temp[0]
         }
 
-        return res.json({ data: enrollStudent, score: scoreStudent })
+        return res.json({ data: scoreStudent })
 
     } catch (error) {
         res.status(404).json({ message: error.message })

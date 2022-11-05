@@ -88,10 +88,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
 
-    res.header('Content-Type', 'application/json')
-    res.header('Accept', 'application/json')
-    res.header('Origin', process.env.CLIENT_HOSTNAME)
-
     // Get data from body
     const { email, password } = req.body
 
@@ -141,7 +137,7 @@ const login = async (req, res) => {
         return res.json({ accessToken })
 
     } catch (error) {
-        return res.status(404).json({ error })
+        return res.status(404)
     }
 }
 

@@ -8,7 +8,6 @@ const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
 
     const [data, setData] = useState([])
-    const [score, setScore] = useState([])
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -24,7 +23,6 @@ const TableScores = ({ id, token }) => {
                 }
             })
             setData(response.data.data)
-            setScore(response.data.score)
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -49,13 +47,14 @@ const TableScores = ({ id, token }) => {
                             {data.map((item, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td>{item.enroll_id}</td>
-                                        <td>{item.course.course_name}</td>
-                                        <td>{item.lecturer.lecturer_name}</td>
+                                        <td>{index + 1}</td>
+                                        <td>{item.enroll.course.course_name}</td>
+                                        <td>{item.enroll.lecturer.lecturer_name}</td>
+                                        <td>{item.score == null ? "-" : item.score}</td>
                                         <td>
-
+                                            {item.score == null ? <Button style={{ width: '100%' }} variant="success">Add Score</Button>
+                                                : <Button style={{ width: '100%' }} variant="primary">Edit Score</Button>}
                                         </td>
-                                        <td><Button style={{ width: '100%' }} variant="success">Add Score</Button></td>
                                     </tr>
                                 )
                             })}

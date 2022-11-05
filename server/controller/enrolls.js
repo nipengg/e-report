@@ -1,4 +1,4 @@
-const { Course, Lecturer, Class, Student, Enroll } = require('../models')
+const { Course, Lecturer, Class, Student, Enroll, Score } = require('../models')
 const { Op } = require('sequelize')
 const Validator = require('fastest-validator')
 
@@ -167,11 +167,26 @@ const createEnroll = async (req, res) => {
             return res.status(400).json({ validator: validate })
         }
 
-        await Enroll.create({
+        const enroll = await Enroll.create({
             nim: nim,
             class_id: class_id,
             lecturer_id: lecturer_id,
             course_id: course_id,
+        })
+
+        const id = enroll.enroll_id
+        const cid = enroll.course_id
+
+        semester = await Course.findAll({
+            where: {
+                course_id: cid
+            },
+            attributes: ['semester'],
+        })
+
+        await Score.create({
+            score_semester: semester[0].semester,
+            enroll_id: id,
         })
 
         return res.json({ message: 'Success!' })
