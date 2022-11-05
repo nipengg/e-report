@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         score: {
             type: DataTypes.FLOAT,
-            allowNull: false
+            allowNull: true,
         },
     }, {
         tableName: 'scores',
