@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
 import { CDBSpinner } from 'cdbreact'
 import ModalScore from '../Modal/ModalScore'
 
@@ -25,6 +24,7 @@ const TableScores = ({ id, token }) => {
                 }
             })
             setData(response.data.data)
+            setCheck(false)
             setLoading(false)
         } catch (error) {
             console.log(error)
@@ -54,8 +54,8 @@ const TableScores = ({ id, token }) => {
                                         <td>{item.enroll.lecturer.lecturer_name}</td>
                                         <td>{item.score == null ? "-" : item.score}</td>
                                         <td>
-                                            {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} />
-                                                : <ModalScore/>}
+                                            {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add score"} />
+                                                : <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Edit score"} />}
                                         </td>
                                     </tr>
                                 )

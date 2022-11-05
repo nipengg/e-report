@@ -119,11 +119,11 @@ const ShowStudent = () => {
                                                         )
                                                     } else if (key == 'ipk') {
                                                         return (
-                                                            <div>ipk</div>
+                                                            null
                                                         )
                                                     } else if (key == 'attendance') {
                                                         return (
-                                                            <div>attendance</div>
+                                                            null
                                                         )
                                                     }
                                                 })()}

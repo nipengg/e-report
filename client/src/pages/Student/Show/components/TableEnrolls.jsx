@@ -25,6 +25,7 @@ const TableEnrolls = ({ id, token }) => {
                 }
             })
             setData(response.data.data)
+            setCheck(false)
             setLoading(false)
         } catch (error) {
             console.log(error)

@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Select from 'react-select'
 import axios from 'axios'
 
-const ModalScore = ({ id, setCheck, token }) => {
+const ModalScore = ({ id, setCheck, token, text }) => {
 
     const url = 'http://localhost:3000/'
 
@@ -38,7 +38,7 @@ const ModalScore = ({ id, setCheck, token }) => {
 
     return (
         <>
-            <Button style={{ width: "100%" }} onClick={handleShow} variant="success">Add Score</Button>
+            <Button style={{ width: "100%" }} onClick={handleShow} variant="success">{text}</Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
