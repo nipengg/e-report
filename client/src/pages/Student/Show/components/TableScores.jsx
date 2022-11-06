@@ -9,7 +9,7 @@ const TableScores = ({ id, token }) => {
 
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    const [check, setCheck] = useState(false);
+    const [check, setCheck] = useState(false)
 
     useEffect(() => {
         getData()
@@ -54,8 +54,8 @@ const TableScores = ({ id, token }) => {
                                         <td>{item.enroll.lecturer.lecturer_name}</td>
                                         <td>{item.score == null ? "-" : item.score}</td>
                                         <td>
-                                            {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add score"} />
-                                                : <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Edit score"} />}
+                                            {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add Score"} />
+                                                : <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Edit Score"} />}
                                         </td>
                                     </tr>
                                 )
