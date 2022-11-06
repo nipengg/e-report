@@ -130,7 +130,7 @@ const createStudentEnroll = async (req, res) => {
 
         const lecturers = await Lecturer.findAll()
 
-        return res.json({ course: courses, class: classes, lecturer: lecturers, enroll: enrollStudent })
+        return res.json({ course: courses, class: classes, lecturer: lecturers })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
