@@ -87,19 +87,39 @@ const getEnroll = async (req, res) => {
 
 const createStudentEnroll = async (req, res) => {
     try {
-        const id = req.query.id
+        const nim = req.query.id
 
         const student = await Student.findAll({
             where: {
-                student_nim: id,
+                student_nim: nim,
             }
         })
 
         const studentMajor = student[0].major
 
+        const enrollStudent = await Enroll.findAll({
+            where: {
+                nim: nim,
+            },
+            attributes: ['enroll_id'],
+            include: [{
+                model: Course,
+                as: "course"
+            }],
+        })
+
+        let cid = []
+
+        for (let i = 0; i < enrollStudent.length; i++) {
+            cid[i] = enrollStudent[i].course.course_id
+        }
+
         const courses = await Course.findAll({
             where: {
                 major: studentMajor,
+                course_id: {
+                    [Op.not]: cid
+                },
             },
             order: [
                 ['semester', 'ASC'],
@@ -110,7 +130,7 @@ const createStudentEnroll = async (req, res) => {
 
         const lecturers = await Lecturer.findAll()
 
-        return res.json({ course: courses, class: classes, lecturer: lecturers })
+        return res.json({ course: courses, class: classes, lecturer: lecturers, enroll: enrollStudent })
     } catch (error) {
         res.status(404).json({ message: error.message })
     }
