@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
-import Select from 'react-select'
 import axios from 'axios'
 
 const ModalScore = ({ id, setCheck, token, text }) => {
@@ -38,11 +37,11 @@ const ModalScore = ({ id, setCheck, token, text }) => {
 
     return (
         <>
-            <Button style={{ width: "100%" }} onClick={handleShow} variant="success">{text}</Button>
+            <Button style={{ width: "100%" }} onClick={handleShow} variant="primary">{text}</Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Add Score</Modal.Title>
+                    <Modal.Title>{text}</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={createData}>
                     <Modal.Body>
@@ -50,11 +49,10 @@ const ModalScore = ({ id, setCheck, token, text }) => {
                             <Form.Label>Score</Form.Label>
                             <Form.Control value={score} type="number" placeholder="Enter score" onChange={(e) => setScore(e.target.value)} />
                         </Form.Group>
-
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type="submit" variant="primary">
-                            Add Score
+                        <Button type="submit" variant="success">
+                            Submit
                         </Button>
                     </Modal.Footer>
                 </Form>
