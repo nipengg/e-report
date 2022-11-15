@@ -103,8 +103,7 @@ const getStudentScores = async (req, res) => {
             }],
         })
 
-        let scoreStudent = []
-        let temp
+        let scoreStudent = [], temp, check = true
 
         for (let i = 0; i < enrollStudent.length; i++) {
             temp = await Score.findAll({
@@ -132,10 +131,15 @@ const getStudentScores = async (req, res) => {
                     enroll_id: enrollStudent[i].enroll_id
                 }
             })
+
+            if (temp[0].score == null) {
+                check = false
+            }
+
             scoreStudent[i] = temp[0]
         }
 
-        return res.json({ data: scoreStudent })
+        return res.json({ data: scoreStudent, check: check })
 
     } catch (error) {
         res.status(404).json({ message: error.message })
