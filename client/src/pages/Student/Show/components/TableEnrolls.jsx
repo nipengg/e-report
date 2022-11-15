@@ -3,6 +3,7 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import ModalEnroll from '../Modal/ModalEnroll'
 import { CDBSpinner } from 'cdbreact'
+import Badge from 'react-bootstrap/Badge'
 
 const TableEnrolls = ({ id, token }) => {
 
@@ -43,6 +44,7 @@ const TableEnrolls = ({ id, token }) => {
                                 <th>Course</th>
                                 <th>Class</th>
                                 <th>Lecturer</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -53,6 +55,7 @@ const TableEnrolls = ({ id, token }) => {
                                         <td>{item.course.course_name}</td>
                                         <td>{item.class.class_name}</td>
                                         <td>{item.lecturer.lecturer_name}</td>
+                                        <td><Badge bg="success">Active</Badge></td>
                                     </tr>
                                 )
                             })}
