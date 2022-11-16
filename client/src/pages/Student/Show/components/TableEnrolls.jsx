@@ -55,7 +55,7 @@ const TableEnrolls = ({ id, token }) => {
                                         <td>{item.course.course_name}</td>
                                         <td>{item.class.class_name}</td>
                                         <td>{item.lecturer.lecturer_name}</td>
-                                        <td><Badge bg="success">Active</Badge></td>
+                                        <td>{item.status === 'active' ? <Badge bg="success">Active</Badge> : <Badge bg="danger">Inactive</Badge>}</td>
                                     </tr>
                                 )
                             })}

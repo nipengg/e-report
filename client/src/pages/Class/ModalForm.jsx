@@ -25,6 +25,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
             })
             setShow(false)
             setName('')
+            setTotalStudent('')
             setCheck(false)
             setMsg('Success!')
             setType('success')
