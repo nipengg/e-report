@@ -71,7 +71,7 @@ const TableEnrolls = ({ id, token }) => {
                             })}
                         </tbody>
                     </Table>
-                    <ModalEnroll id={id} token={token} setCheck={setCheck} />
+                    <ModalEnroll id={id} token={token} setCheck={setCheck} semester={semester} />
                 </>
             }
         </>

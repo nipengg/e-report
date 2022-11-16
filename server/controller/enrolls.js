@@ -88,6 +88,7 @@ const getEnroll = async (req, res) => {
 const createStudentEnroll = async (req, res) => {
     try {
         const nim = req.query.id
+        const semester = req.query.semester
 
         const student = await Student.findAll({
             where: {
@@ -117,6 +118,7 @@ const createStudentEnroll = async (req, res) => {
         const courses = await Course.findAll({
             where: {
                 major: studentMajor,
+                semester: semester,
                 course_id: {
                     [Op.not]: cid
                 },
