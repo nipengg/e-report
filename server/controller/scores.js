@@ -83,6 +83,8 @@ const getScore = async (req, res) => {
 const getStudentScores = async (req, res) => {
     try {
         const nim = req.query.nim
+        const semester = req.query.semester
+        let scoreStudent = [], temp, check = true
 
         const enrollStudent = await Enroll.findAll({
             where: {
@@ -99,11 +101,16 @@ const getStudentScores = async (req, res) => {
             },
             {
                 model: Course,
+                where: {
+                    semester: semester
+                },
                 as: "course"
             }],
         })
 
-        let scoreStudent = [], temp, check = true
+        if (enrollStudent.length == 0) {
+            check = false
+        }
 
         for (let i = 0; i < enrollStudent.length; i++) {
             temp = await Score.findAll({
@@ -185,7 +192,7 @@ const updateScore = async (req, res) => {
     try {
         const id = req.query.id
 
-        const scoreData = await Score.update(
+        await Score.update(
             {
                 score: value
             },

@@ -43,7 +43,11 @@ module.exports = (sequelize, DataTypes) => {
                 model: Class,
                 key: 'class_id'
             },
-        }
+        },
+        status: {
+            type: DataTypes.ENUM(['active', 'inactive']),
+            allowNull: true,
+        },
     }, {
         tableName: 'enrolls',
         timestamps: false,
@@ -54,6 +58,6 @@ module.exports = (sequelize, DataTypes) => {
         Enroll.belongsTo(models.Class, { foreignKey: 'class_id', as: 'class' })
         Enroll.belongsTo(models.Lecturer, { foreignKey: 'lecturer_id', as: 'lecturer' })
     }
-    
+
     return Enroll;
 }

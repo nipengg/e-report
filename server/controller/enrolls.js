@@ -139,11 +139,13 @@ const createStudentEnroll = async (req, res) => {
 const getStudentEnroll = async (req, res) => {
     try {
         const nim = req.query.nim
+        const semester = req.query.semester
 
         const enrollStudent = await Enroll.findAll({
             where: {
                 nim: nim,
             },
+            attributes: ['enroll_id', 'nim', 'status'],
             include: [{
                 model: Lecturer,
                 as: 'lecturer',
@@ -154,6 +156,9 @@ const getStudentEnroll = async (req, res) => {
             },
             {
                 model: Course,
+                where: {
+                    semester: semester
+                },
                 as: "course"
             },
             {
