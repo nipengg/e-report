@@ -11,17 +11,18 @@ const TableScores = ({ id, token }) => {
 
     const [data, setData] = useState([])
     const [gen, setGen] = useState()
+    const [semester, setSemester] = useState(1)
     const [loading, setLoading] = useState(true)
     const [check, setCheck] = useState(false)
 
     useEffect(() => {
         getData()
-    }, [check])
+    }, [check, semester])
 
 
     const getData = async () => {
         try {
-            const response = await axios.get(`${url}score/s/student?nim=${id}`, {
+            const response = await axios.get(`${url}score/s/student?nim=${id}&semester=${semester}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
@@ -40,7 +41,7 @@ const TableScores = ({ id, token }) => {
             {loading === true ? <div style={{ textAlign: 'center', paddingTop: 100 }}><CDBSpinner dark /></div> :
                 <>
                     <br />
-                    <Form.Select aria-label="Default select example">
+                    <Form.Select aria-label="Default select example" onChange={(e) => setSemester(e.target.value)}>
                         <option value="1">Semester 1</option>
                         <option value="2">Semester 2</option>
                         <option value="3">Semester 3</option>
