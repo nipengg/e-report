@@ -3,11 +3,13 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import { CDBSpinner } from 'cdbreact'
 import ModalScore from '../Modal/ModalScore'
+import Button from 'react-bootstrap/Button'
 
 const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
 
     const [data, setData] = useState([])
+    const [gen, setGen] = useState()
     const [loading, setLoading] = useState(true)
     const [check, setCheck] = useState(false)
 
@@ -24,6 +26,7 @@ const TableScores = ({ id, token }) => {
                 }
             })
             setData(response.data.data)
+            setGen(response.data.check)
             setCheck(false)
             setLoading(false)
         } catch (error) {
@@ -62,6 +65,7 @@ const TableScores = ({ id, token }) => {
                             })}
                         </tbody>
                     </Table>
+                    { gen === true ? <Button variant="success">Generate Score Report</Button> : null }
                 </>
             }
         </>
