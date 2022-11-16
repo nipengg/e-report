@@ -83,6 +83,7 @@ const getScore = async (req, res) => {
 const getStudentScores = async (req, res) => {
     try {
         const nim = req.query.nim
+        let scoreStudent = [], temp, check = true
 
         const enrollStudent = await Enroll.findAll({
             where: {
@@ -103,7 +104,9 @@ const getStudentScores = async (req, res) => {
             }],
         })
 
-        let scoreStudent = [], temp, check = true
+        if (enrollStudent.length == 0) {
+            check = false
+        }
 
         for (let i = 0; i < enrollStudent.length; i++) {
             temp = await Score.findAll({
