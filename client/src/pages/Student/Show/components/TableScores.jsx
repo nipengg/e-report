@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 import { CDBSpinner } from 'cdbreact'
 import ModalScore from '../Modal/ModalScore'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
@@ -38,12 +39,21 @@ const TableScores = ({ id, token }) => {
         <>
             {loading === true ? <div style={{ textAlign: 'center', paddingTop: 100 }}><CDBSpinner dark /></div> :
                 <>
+                    <br />
+                    <Form.Select aria-label="Default select example">
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="3">Semester 4</option>
+                    </Form.Select>
+                    <br />
                     <Table striped bordered hover responsive>
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Course</th>
                                 <th>Lecturer</th>
+                                <th>Semester</th>
                                 <th>Scores</th>
                                 <th>Action</th>
                             </tr>
@@ -55,6 +65,7 @@ const TableScores = ({ id, token }) => {
                                         <td>{index + 1}</td>
                                         <td>{item.enroll.course.course_name}</td>
                                         <td>{item.enroll.lecturer.lecturer_name}</td>
+                                        <td>{item.enroll.course.semester}</td>
                                         <td>{item.score == null ? "-" : item.score}</td>
                                         <td>
                                             {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add Score"} />
@@ -65,7 +76,7 @@ const TableScores = ({ id, token }) => {
                             })}
                         </tbody>
                     </Table>
-                    { gen === true ? <Button variant="success">Generate Score Report</Button> : null }
+                    {gen === true ? <Button variant="success" size="lg">Generate Score Report</Button> : null}
                 </>
             }
         </>

@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table'
 import ModalEnroll from '../Modal/ModalEnroll'
 import { CDBSpinner } from 'cdbreact'
 import Badge from 'react-bootstrap/Badge'
+import Form from 'react-bootstrap/Form'
 
 const TableEnrolls = ({ id, token }) => {
 
@@ -11,16 +12,17 @@ const TableEnrolls = ({ id, token }) => {
 
     const [data, setData] = useState([])
     const [check, setCheck] = useState(false)
-    const [loading, setLoading] = useState(true);
+    const [semester, setSemester] = useState(1)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         getData()
-    }, [check])
+    }, [check, semester])
 
 
     const getData = async () => {
         try {
-            const response = await axios.get(`${url}enroll/e/student?nim=${id}`, {
+            const response = await axios.get(`${url}enroll/e/student?nim=${id}&semester=${semester}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 }
@@ -37,6 +39,14 @@ const TableEnrolls = ({ id, token }) => {
         <>
             {loading === true ? <div style={{ textAlign: 'center', paddingTop: 100 }}><CDBSpinner dark /></div> :
                 <>
+                    <br />
+                    <Form.Select aria-label="Default select example" onChange={(e) => setSemester(e.target.value)}>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="3">Semester 4</option>
+                    </Form.Select>
+                    <br />
                     <Table striped bordered hover>
                         <thead>
                             <tr>
