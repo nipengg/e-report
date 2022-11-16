@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import Select from 'react-select'
 import axios from 'axios'
 
-const ModalEnroll = ({ id, token, setCheck }) => {
+const ModalEnroll = ({ id, token, setCheck, semester }) => {
 
     const url = 'http://localhost:3000/'
 
@@ -31,7 +31,7 @@ const ModalEnroll = ({ id, token, setCheck }) => {
     }, [show])
 
     const getData = async () => {
-        const response = await axios.get(`${url}enroll/c/student?id=${id}`, {
+        const response = await axios.get(`${url}enroll/c/student?id=${id}&semester=${semester}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
