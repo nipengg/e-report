@@ -5,6 +5,7 @@ import { CDBSpinner } from 'cdbreact'
 import ModalScore from '../Modal/ModalScore'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import generatePDF from '../services/reportGenerator'
 
 const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
@@ -77,7 +78,7 @@ const TableScores = ({ id, token }) => {
                             })}
                         </tbody>
                     </Table>
-                    {gen === true ? <Button variant="success" size="lg">Generate Score Report</Button> : null}
+                    {gen === true ? <Button onClick={() => generatePDF(data)} variant="success" size="lg">Generate Score Report</Button> : null}
                 </>
             }
         </>
