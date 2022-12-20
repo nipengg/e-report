@@ -5,6 +5,8 @@ import { CDBSpinner } from 'cdbreact'
 import ModalScore from '../Modal/ModalScore'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import generatePDF from '../services/reportGenerator'
+import Badge from 'react-bootstrap/esm/Badge'
 
 const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
@@ -19,6 +21,33 @@ const TableScores = ({ id, token }) => {
         getData()
     }, [check, semester])
 
+    const RenderGrade = ({value}) => {
+        console.log(value)
+        switch(true){
+            case (value == null):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="danger">-</Badge></h4></td>;
+
+            case (value >= 90):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="success">A</Badge></h4></td>;
+
+            case (value >= 80):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="primary">B</Badge></h4></td>;
+
+            case (value >= 75):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="secondary">C</Badge></h4></td>;
+            
+            case (value >= 70):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="warning">D</Badge></h4></td>;
+
+            case (value < 70):
+                return <td style={{textAlign:"center"}}><h4><Badge bg="danger">F</Badge></h4></td>;
+                
+            default:
+                console.log("Error!");
+                break;
+                
+        }
+    }
 
     const getData = async () => {
         try {
@@ -55,29 +84,32 @@ const TableScores = ({ id, token }) => {
                                 <th>Course</th>
                                 <th>Lecturer</th>
                                 <th>Semester</th>
-                                <th>Scores</th>
+                                <th>Score</th>
+                                <th>Grade</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.enroll.course.course_name}</td>
-                                        <td>{item.enroll.lecturer.lecturer_name}</td>
-                                        <td>{item.enroll.course.semester}</td>
-                                        <td>{item.score == null ? "-" : item.score}</td>
-                                        <td>
-                                            {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add Score"} />
-                                                : <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Edit Score"} />}
-                                        </td>
-                                    </tr>
-                                )
-                            })}
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{item.enroll.course.course_name}</td>
+                                            <td>{item.enroll.lecturer.lecturer_name}</td>
+                                            <td>{item.enroll.course.semester}</td>
+                                            <td>{item.score == null ? "-" : item.score}</td>
+                                            <RenderGrade value = {item.score}/>
+                                            <td>
+                                                {item.score == null ? <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Add Score"} />
+                                                    : <ModalScore id={item.score_id} setCheck={setCheck} token={token} text={"Edit Score"} />}
+                                            </td>
+                                        </tr>
+                                    )
+                                }
+                            )}
                         </tbody>
                     </Table>
-                    {gen === true ? <Button variant="success" size="lg">Generate Score Report</Button> : null}
+                    {gen === true ? <Button onClick={() => generatePDF(data)} variant="success" size="lg">Generate Score Report</Button> : null}
                 </>
             }
         </>
