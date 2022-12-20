@@ -98,6 +98,10 @@ const login = async (req, res) => {
             where: { email: email }
         })
 
+        if (user.length == 0) {
+            res.status(404).json({ message: "Account is not exist!" })
+        }
+
         // Compare Password
         const check = await bcrypt.compare(password, user[0].password)
 

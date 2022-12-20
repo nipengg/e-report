@@ -27,7 +27,9 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                 }
             })
             setShow(false)
-            setName('')
+            setName('')     
+            setAge('')
+            setAddress('')
             setCheck(false)
             setMsg('Success!')
             setType('success')
@@ -80,7 +82,6 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                             <Form.Control
                                 as="textarea" rows={3}
                                 placeholder="Enter Address.."
-                                autoFocus
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)}
                             />
