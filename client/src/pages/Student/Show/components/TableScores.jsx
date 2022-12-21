@@ -6,7 +6,7 @@ import ModalScore from '../Modal/ModalScore'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import generatePDF from '../services/reportGenerator'
-import Badge from 'react-bootstrap/esm/Badge'
+import RenderGrade from './RenderGrade'
 
 const TableScores = ({ id, token }) => {
     const url = 'http://localhost:3000/'
@@ -20,34 +20,6 @@ const TableScores = ({ id, token }) => {
     useEffect(() => {
         getData()
     }, [check, semester])
-
-    const RenderGrade = ({value}) => {
-        console.log(value)
-        switch(true){
-            case (value == null):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="danger">-</Badge></h4></td>;
-
-            case (value >= 90):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="success">A</Badge></h4></td>;
-
-            case (value >= 80):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="primary">B</Badge></h4></td>;
-
-            case (value >= 75):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="secondary">C</Badge></h4></td>;
-            
-            case (value >= 70):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="warning">D</Badge></h4></td>;
-
-            case (value < 70):
-                return <td style={{textAlign:"center"}}><h4><Badge bg="danger">F</Badge></h4></td>;
-                
-            default:
-                console.log("Error!");
-                break;
-                
-        }
-    }
 
     const getData = async () => {
         try {
@@ -74,7 +46,7 @@ const TableScores = ({ id, token }) => {
                         <option value="1">Semester 1</option>
                         <option value="2">Semester 2</option>
                         <option value="3">Semester 3</option>
-                        <option value="3">Semester 4</option>
+                        <option value="4">Semester 4</option>
                     </Form.Select>
                     <br />
                     <Table striped bordered hover responsive>
