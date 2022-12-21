@@ -24,7 +24,7 @@ const Layout = ({ name }) => {
   }
 
   return (
-    <Navbar style={{ marginBottom: 15 }} bg="black" variant="dark" expand="lg">
+    <Navbar style={{ marginBottom: 15 }} bg="dark" variant="dark" expand="lg">
       <Container>
         <Image style={{ width: 30, height: 30, marginRight: 10 }}
           src=

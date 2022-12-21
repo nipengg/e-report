@@ -13,6 +13,7 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Nav from 'react-bootstrap/Nav';
 import TableEnrolls from './components/TableEnrolls'
 import TableScores from './components/TableScores'
+import TableIPK from './components/TableIPK'
 
 const ShowStudent = () => {
 
@@ -119,7 +120,7 @@ const ShowStudent = () => {
                                                         )
                                                     } else if (key == 'ipk') {
                                                         return (
-                                                            null
+                                                            <TableIPK nim={item.student_nim} token={token} />
                                                         )
                                                     } else if (key == 'attendance') {
                                                         return (
