@@ -93,4 +93,39 @@ const createLecturer = async (req, res) => {
     }
 }
 
-module.exports = { getLecturer, createLecturer }
+const editLecturer = async (req, res) => {
+    const { lecturerID, newName, newAge, newAddress } = req.body
+
+    try {
+        const schema = {
+            lecturerID: 'number|required',
+            newName: 'string|required|max:255',
+            newAge: 'number|required',
+            newAddress: 'string|required',
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json(validate)
+        }
+
+        await Lecturer.update(
+            {
+                lecturer_name: newName,
+                lecturer_age: newAge,
+                lecturer_address: newAddress
+            },
+            {
+                where: { lecturer_id: lecturerID }
+            }
+        );
+
+        res.status(200).json({ message: "Success!"})
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getLecturer, createLecturer, editLecturer }

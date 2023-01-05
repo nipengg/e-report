@@ -159,4 +159,49 @@ const createStudent = async (req, res) => {
     }
 }
 
-module.exports = { getStudent, createStudent, showStudent }
+const editStudent = async (req, res) => {
+    const{ studentNIM, newName, newAge, newGender, newAddress, newPOB, newDOB, newCity, newMajor } = req.body
+
+    try{
+        const schema = {
+            studentNIM: 'number|required',
+            newName: 'string|required|max:255',
+            newAge: 'number|required',
+            newGender: 'string|required|max:255',
+            newAddress: 'string|required',
+            newPOB: 'string|required|max:255',
+            newDOB: 'string|required',
+            newCity: 'string|required|max:255',
+            newMajor: 'string|required|max:5'
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if(validate.length) {
+            return res.status(400).json(validate)
+        }
+
+        await Student.update(
+            {
+                student_name: newName,
+                student_age: newAge,
+                student_gender: newGender,
+                student_address: newAddress,
+                student_place_of_birth: newPOB,
+                student_date_of_birth: newDOB,
+                city: newCity,
+                major: newMajor
+            },
+            {
+                where: { student_nim: studentNIM}
+            }
+        );
+
+        res.status(200).json({ message: "Success!" })
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+module.exports = { getStudent, createStudent, showStudent, editStudent }

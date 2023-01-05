@@ -95,4 +95,44 @@ const createCourse = async (req, res) => {
     }
 }
 
-module.exports = { getCourse, createCourse }
+const editCourse = async (req, res) => {
+    const { courseID, newName, newSCU, newTA, newSemester, newMajor} = req.body
+    
+    try{
+        const schema = {
+            courseID: 'number|required',
+            newName: 'string|required|max:255',
+            newSCU: 'number|required',
+            newTA: 'number|required',
+            newSemester: 'number|required',
+            newMajor: 'string|required|max:5'
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json(validate)
+        }
+
+        await Course.update(
+            {
+                course_name: newName,
+                semester_credit_unit: newSCU,
+                total_attendance: newTA,
+                semester: newSemester,
+                major: newMajor
+            },
+            {
+                where: { course_id: courseID }
+            }
+        );
+
+        res.status(200).json({message: "Success!"})
+    }
+    catch (error) {
+        res.status(404).json({ message: error.message })
+    }
+}
+
+
+module.exports = { getCourse, createCourse, editCourse }
