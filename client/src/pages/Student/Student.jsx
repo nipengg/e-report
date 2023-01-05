@@ -14,6 +14,7 @@ import Footer from '../Layout/Footer'
 import ModalForm from './ModalForm'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import ModalEdit from './ModalEdit'
 
 const Student = () => {
 
@@ -131,6 +132,7 @@ const Student = () => {
                                     <th>Address</th>
                                     <th>Place of Birth</th>
                                     <th>Date of Birth</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,6 +147,20 @@ const Student = () => {
                                             <td>{item.student_address}</td>
                                             <td>{item.student_place_of_birth}</td>
                                             <td>{item.student_date_of_birth}</td>
+                                            <td>
+                                                <ModalEdit 
+                                                    token={token} setCheck={setCheck} setMsg={setMsg} setType={setType} 
+                                                    sNim={item.student_nim}
+                                                    sName={item.student_name}
+                                                    sMajor={item.major}
+                                                    sAge={item.student_age}
+                                                    sGender={item.student_gender}
+                                                    sAddress={item.student_address}
+                                                    sPob={item.student_place_of_birth}
+                                                    sDob={item.student_date_of_birth}
+                                                    sCity={item.city}
+                                                />
+                                            </td>
                                         </tr>
                                     )
                                 })}
