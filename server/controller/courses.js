@@ -114,7 +114,7 @@ const editCourse = async (req, res) => {
             return res.status(400).json(validate)
         }
 
-        const updatedRows = await Course.update(
+        await Course.update(
             {
                 course_name: newName,
                 semester_credit_unit: newSCU,

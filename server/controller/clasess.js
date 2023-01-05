@@ -107,7 +107,7 @@ const editClass = async(req, res) => {
             return res.status(400).json(validate)
         }
 
-        const updatedRows = await Class.update(
+        await Class.update(
             {
                 class_name: newClassName,
                 total_student: newClassTotal

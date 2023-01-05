@@ -110,7 +110,7 @@ const editLecturer = async (req, res) => {
             return res.status(400).json(validate)
         }
 
-        const updatedRows = await Lecturer.update(
+        await Lecturer.update(
             {
                 lecturer_name: newName,
                 lecturer_age: newAge,
