@@ -4,63 +4,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalForm = ({ token, setCheck, setMsg, setType }) => {
+const ModalEdit = ({ token, setCheck, setMsg, setType, sNim, sName, sMajor, sAge, sGender, sAddress, sPob, sDob, sCity }) => {
 
     const url = 'http://localhost:3000/'
 
     const [show, setShow] = useState(false)
-    const [name, setName] = useState('')
-    const [age, setAge] = useState('')
-    const [gender, setGender] = useState('')
-    const [address, setAddress] = useState('')
-    const [pob, setPob] = useState('')
-    const [dob, setDob] = useState(Date)
-    const [city, setCity] = useState('')
-    const [major, setMajor] = useState('CS')
-
-    const createData = async (e) => {
-        e.preventDefault()
-        try {
-            await axios.post(`${url}student`, {
-                name: name,
-                age: parseInt(age),
-                gender: gender,
-                address: address,
-                pob: pob,
-                dob: dob,
-                city: city,
-                major: major,
-            }, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-            setShow(false)
-            setName('')
-            setCheck(false)
-            setMsg('Success!')
-            setType('success')
-        } catch (error) {
-            setShow(false)
-            setType('danger')
-            setMsg(error.response.data.message)
-        }
-    }
+    const [name, setName] = useState(sName)
+    const [age, setAge] = useState(sAge)
+    const [gender, setGender] = useState(sGender)
+    const [address, setAddress] = useState(sAddress)
+    const [pob, setPob] = useState(sPob)
+    const [dob, setDob] = useState(sDob)
+    const [city, setCity] = useState(sCity)
+    const [major, setMajor] = useState(sMajor)
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
-                Create
+            <Button variant="primary" onClick={handleShow}>
+                Edit
             </Button>
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Create Data</Modal.Title>
+                    <Modal.Title>Update {name}</Modal.Title>
                 </Modal.Header>
-                <Form onSubmit={createData}>
+                <Form>
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Name </Form.Label>
@@ -90,6 +61,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                                 label="Male"
                                 name="gender"
                                 value={"Male"}
+                                checked={gender == "Male" ? true : false}
                                 onChange={(e) => setGender(e.target.value)}
                             />
                             <Form.Check
@@ -97,6 +69,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                                 label="Female"
                                 name="gender"
                                 value={"Female"}
+                                checked={gender == "Female" ? true : false}
                                 onChange={(e) => setGender(e.target.value)}
                             />
                         </Form.Group>
@@ -134,9 +107,9 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Major </Form.Label>
                             <Form.Select aria-label="Default select example" onClick={(e) => setMajor(e.target.value)}>
-                                <option value="CS">Computer Science</option>
-                                <option value="BC">Business Creation</option>
-                                <option value="DKV">DKV</option>
+                                <option value="CS" selected={major == "CS" ? true : false}>Computer Science</option>
+                                <option value="BC" selected={major == "BC" ? true : false}>Business Creation</option>
+                                <option value="DKV" selected={major == "DKV" ? true : false}>DKV</option>
                             </Form.Select>
                         </Form.Group>
 
@@ -154,7 +127,7 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button type="submit" variant="primary">
-                            Submit
+                            Update
                         </Button>
                     </Modal.Footer>
                 </Form>
@@ -163,4 +136,4 @@ const ModalForm = ({ token, setCheck, setMsg, setType }) => {
     )
 }
 
-export default ModalForm
+export default ModalEdit
