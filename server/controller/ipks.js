@@ -1,4 +1,4 @@
-const { Ipk, Student, Score, Enroll, Lecturer, Course, Class } = require('../models')
+const { Ipk, Student, Score, Enroll } = require('../models')
 const { Op } = require('sequelize')
 const Validator = require('fastest-validator')
 

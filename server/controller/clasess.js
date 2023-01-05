@@ -91,4 +91,38 @@ const createClass = async (req, res) => {
     }
 }
 
-module.exports = { getClass, createClass }
+const editClass = async(req, res) => {
+    const { classID, newClassName, newClassTotal } = req.body
+    
+    try{
+        const schema = {
+            classID: 'number|required',
+            newClassName: 'string|required|max:255',
+            newClassTotal: 'number|required'
+        }
+
+        const validate = v.validate(req.body, schema)
+
+        if (validate.length) {
+            return res.status(400).json(validate)
+        }
+
+        await Class.update(
+            {
+                class_name: newClassName,
+                total_student: newClassTotal
+            },
+            {
+                where: {class_id: classID}
+            }
+        );
+        res.status(200).json({ message: "Success!"})
+    }
+
+    catch (error) {
+        res.status(404).json({nessage: error.message})
+    }
+}
+
+
+module.exports = { getClass, createClass, editClass }
