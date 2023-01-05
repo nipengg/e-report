@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-const ModalEdit = ({token, setCheck, setMsg, setType, lecId, lecName, lecAge, lecAddress}) => {
+const ModalEdit = ({ token, setCheck, setMsg, setType, lecId, lecName, lecAge, lecAddress }) => {
 
     const url = 'http://localhost:3000/'
 
@@ -63,7 +63,7 @@ const ModalEdit = ({token, setCheck, setMsg, setType, lecId, lecName, lecAge, le
                     </Modal.Body>
                     <Modal.Footer>
                         <Button type="submit" variant="primary">
-                            Submit
+                            Update
                         </Button>
                     </Modal.Footer>
                 </Form>

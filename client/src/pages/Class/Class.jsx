@@ -14,6 +14,7 @@ import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ModalForm from './ModalForm'
+import ModalEdit from '../Class/ModalEdit'
 
 const Class = () => {
 
@@ -126,6 +127,7 @@ const Class = () => {
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Total Student</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -135,6 +137,14 @@ const Class = () => {
                                             <td>{item.class_id}</td>
                                             <td>{item.class_name}</td>
                                             <td>{item.total_student}</td>
+                                            <td>
+                                                <ModalEdit
+                                                    token={token} setCheck={setCheck} setMsg={setMsg} setType={setType}
+                                                    cIc={item.class_id}
+                                                    cName={item.class_name}
+                                                    cTotal={item.total_student}
+                                                />
+                                            </td>
                                         </tr>
                                     )
                                 })}
