@@ -52,7 +52,7 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, cId, cName, cTotal }) => 
           </Modal.Body>
           <Modal.Footer>
             <Button type="submit" variant="primary">
-              Submit
+              Update
             </Button>
           </Modal.Footer>
         </Form>
