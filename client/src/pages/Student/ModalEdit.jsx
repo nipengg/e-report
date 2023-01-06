@@ -60,7 +60,7 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, sNim, sName, sMajor, sAge
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Update {name}</Modal.Title>
+                    <Modal.Title>Update {sName}</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={editData}>
                     <Modal.Body>
