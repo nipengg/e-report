@@ -18,8 +18,39 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, sNim, sName, sMajor, sAge
     const [city, setCity] = useState(sCity)
     const [major, setMajor] = useState(sMajor)
 
+    const editData = async(e) => {
+        e.preventDefault()
+        try {
+            await axios.put(`${url}student`, {
+                studentNIM: sNim,
+                newName: name,
+                newAge: parseInt(age),
+                newGender: gender,
+                newAddress: address,
+                newPOB: pob,
+                newDOB: dob,
+                newCity: city,
+                newMajor: major,
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            setShow(false)
+            setName('')
+            setCheck(false)
+            setMsg('Success!')
+            setType('success')
+        } catch (error) {
+            setShow(false)
+            setType('danger')
+            setMsg(error.response.data.message)
+        }
+    }
+
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+
 
     return (
         <>
@@ -31,7 +62,7 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, sNim, sName, sMajor, sAge
                 <Modal.Header closeButton>
                     <Modal.Title>Update {name}</Modal.Title>
                 </Modal.Header>
-                <Form>
+                <Form onSubmit={editData}>
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label> Name </Form.Label>

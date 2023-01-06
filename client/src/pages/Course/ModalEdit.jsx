@@ -13,6 +13,38 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, courseId, courseName, cou
   const [semester, setSemester] = useState(courseSemester)
   const [major, setMajor] = useState(courseMajor)
 
+  const url = "http://localhost:3000/"
+
+  const editData = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.put(`${url}course`, {
+        courseID: courseId,
+        newName: name,
+        newSCU: parseInt(scu),
+        newTA: parseInt(totalAttendance),
+        newSemester: parseInt(semester),
+        newMajor: major,
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setShow(false)
+      setName('')
+      setScu('')
+      setTotalAttendance('')
+      setSemester('')
+      setCheck(false)
+      setMsg('Success!')
+      setType('success')
+    } catch (error) {
+      setShow(false)
+      setType('danger')
+      setMsg(error.response.data.message)
+    }
+
+  }
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
@@ -24,9 +56,9 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, courseId, courseName, cou
 
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Update {name}</Modal.Title>
+          <Modal.Title>Update {courseName}</Modal.Title>
         </Modal.Header>
-        <Form>
+        <Form onSubmit={editData}>
           <Modal.Body>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -90,5 +122,4 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, courseId, courseName, cou
     </>
   )
 }
-
 export default ModalEdit

@@ -140,7 +140,7 @@ const Class = () => {
                                             <td>
                                                 <ModalEdit
                                                     token={token} setCheck={setCheck} setMsg={setMsg} setType={setType}
-                                                    cIc={item.class_id}
+                                                    cId={item.class_id}
                                                     cName={item.class_name}
                                                     cTotal={item.total_student}
                                                 />

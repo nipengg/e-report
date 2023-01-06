@@ -12,6 +12,32 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, cId, cName, cTotal }) => 
   const [name, setName] = useState(cName)
   const [totalStudent, setTotalStudent] = useState(cTotal)
 
+  const editData = async (e) => {
+    e.preventDefault()
+    try {
+      await axios.put(`${url}class`, {
+        classID: cId,
+        newClassName: name,
+        newClassTotal: parseInt(totalStudent),
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      setShow(false)
+      setName('')
+      setTotalStudent('')
+      setCheck(false)
+      setMsg('Success!')
+      setType('success')
+    } catch (error) {
+      setShow(false)
+      setType('danger')
+      setMsg(error.response.data.message)
+    }
+  }
+
+
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
@@ -23,9 +49,9 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, cId, cName, cTotal }) => 
 
       <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit {name}</Modal.Title>
+          <Modal.Title>Edit {cName}</Modal.Title>
         </Modal.Header>
-        <Form>
+        <Form onSubmit={editData}>
           <Modal.Body>
 
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

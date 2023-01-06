@@ -13,6 +13,34 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, lecId, lecName, lecAge, l
     const [age, setAge] = useState(lecAge)
     const [address, setAddress] = useState(lecAddress)
 
+    const editData = async (e) => {
+        e.preventDefault()
+        try {
+            await axios.put(`${url}lecturer`, {
+                lecturerID: lecId,
+                newName: name,
+                newAge: parseInt(age),
+                newAddress: address,
+
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            setShow(false)
+            setName('')     
+            setAge('')
+            setAddress('')
+            setCheck(false)
+            setMsg('Success!')
+            setType('success')
+        } catch (error) {
+            setShow(false)
+            setType('danger')
+            setMsg(error.response.data.message)
+        }
+    }
+
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
 
@@ -24,9 +52,9 @@ const ModalEdit = ({ token, setCheck, setMsg, setType, lecId, lecName, lecAge, l
 
             <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit {name}</Modal.Title>
+                    <Modal.Title>Edit {lecName}</Modal.Title>
                 </Modal.Header>
-                <Form>
+                <Form onSubmit={editData}>
                     <Modal.Body>
 
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
