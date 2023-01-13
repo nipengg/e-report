@@ -44,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
                 key: 'class_id'
             },
         },
+        attendance_count: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         status: {
             type: DataTypes.ENUM(['active', 'inactive']),
             allowNull: true,

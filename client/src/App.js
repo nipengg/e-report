@@ -1,7 +1,8 @@
 import React from 'react'
-import { Lecturer, Home, Layout, Student, Class, City, Course, Score, Ipk, Login, Register, ShowStudent } from './pages'
+import { Lecturer, Home, Layout, Student, Class, City, Course, Score, Ipk, Login, Register, ShowStudent, ShowClass } from './pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ShowStudentAttendance from './pages/Course/Attendance/ShowStudentAttendance';
 
 const App = () => {
   return (
@@ -20,6 +21,8 @@ const App = () => {
             <Route path="/enroll" element={<Register />} />
             <Route path="/score" element={<Score />} />
             <Route path="/ipk" element={<Ipk />} />
+            <Route path="/course/:courseID" element={<ShowClass/>} />
+            <Route path="/course/:courseID/:classID" element={<ShowStudentAttendance/>} />
           </Routes>
         </BrowserRouter>
     </>

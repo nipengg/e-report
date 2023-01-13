@@ -138,7 +138,7 @@ const Course = () => {
                                     return (
                                         <tr key={index}>
                                             <td>{item.course_id}</td>
-                                            <td>{item.course_name} - Semester {item.semester}</td>
+                                            <td><a href={'/course/' + item.course_id}> {item.course_name} - Semester {item.semester}</a></td>
                                             <td>{item.major}</td>
                                             <td>{item.semester_credit_unit}</td>
                                             <td>{item.total_attendance}</td>
