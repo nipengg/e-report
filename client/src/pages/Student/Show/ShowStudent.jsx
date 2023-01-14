@@ -105,9 +105,6 @@ const ShowStudent = () => {
                                                     <Nav.Item>
                                                         <Nav.Link eventKey="ipk" onClick={() => setKey('ipk')}>IPK</Nav.Link>
                                                     </Nav.Item>
-                                                    <Nav.Item>
-                                                        <Nav.Link eventKey="attendance" onClick={() => setKey('attendance')}>Attendance</Nav.Link>
-                                                    </Nav.Item>
                                                 </Nav>
                                                 {(() => {
                                                     if (key == 'enroll') {
