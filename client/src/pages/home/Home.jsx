@@ -54,10 +54,11 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>Lecturer</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
+                  Go here to view the personal data of the lecturer
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <a href="//localhost:3001/lecturer">
+                  <Button variant="primary">Go</Button>
+                </a>
               </Card.Body>
             </Card>
           </Col>
@@ -67,70 +68,47 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>Course</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
+                  Go here to view Name of major, Total SCU, Total attendance
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <a href="//localhost:3001/course">
+                  <Button variant="primary">Go</Button>
+                </a>
               </Card.Body>
             </Card>
           </Col>
-          <Col md="auto" xs="auto" lg="auto">
+          
+        </Row>
+        <br />
+        <Row className="justify-content-md-center">
+        <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
               <Card.Img style={{ width: "180px", height: "130px" }} className="center" variant="top" src="/picture/class.png" />
               <Card.Body>
                 <Card.Title>Class</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
+                  Go here to view Class name, Total Student, and edit
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <a href = "//localhost:3001/class">
+                <Button variant="primary">Go</Button>
+                </a>
               </Card.Body>
             </Card>
           </Col>
-        </Row>
-        <br />
-        <Row className="justify-content-md-center">
           <Col md="auto" xs="auto" lg="auto">
             <Card style={{ width: '18rem' }}>
               <Card.Img style={{ width: "180px", height: "130px" }} className="center" variant="top" src="/picture/student.png" />
               <Card.Body>
                 <Card.Title>Student</Card.Title>
                 <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
+                 Go here to view Student personal data
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md="auto" xs="auto" lg="auto">
-            <Card style={{ width: '18rem' }}>
-              <Card.Img style={{ width: "180px", height: "130px" }} className="center" variant="top" src="/picture/score.png" />
-              <Card.Body>
-                <Card.Title>Score</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col md="auto" xs="auto" lg="auto">
-            <Card style={{ width: '18rem' }}>
-              <Card.Img style={{ width: "180px", height: "130px" }} className="center" variant="top" src="/picture/ipk.png" />
-              <Card.Body>
-                <Card.Title>IPK</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up the
-                  bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
+                <a href = "//localhost:3001/student">
+                <Button variant="primary">Go</Button>
+                </a>
               </Card.Body>
             </Card>
           </Col>
         </Row>
-
       </Container>
       <Footer />
     </>

@@ -199,6 +199,7 @@ const createEnroll = async (req, res) => {
             class_id: class_id,
             lecturer_id: lecturer_id,
             course_id: course_id,
+            attendance_count: 0,
         })
 
         const id = enroll.enroll_id
