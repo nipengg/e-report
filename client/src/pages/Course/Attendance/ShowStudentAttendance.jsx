@@ -37,6 +37,7 @@ const ShowStudentAttendance = () => {
     const [msg, setMsg] = useState('')
     const [type, setType] = useState('')
     const [loading, setLoading] = useState(true)
+    const [query, setQuery] = useState('')
 
     useEffect(() => {
         refreshToken();
@@ -71,6 +72,16 @@ const ShowStudentAttendance = () => {
         setLoading(false)
     }
 
+    const incrementAttendance = async ( studentNIM ) => {
+        await axios.put(`${url}course/attend/student`, {
+           courseID: courseID,
+           classID: classID,
+           studentNIM: studentNIM
+        }
+
+        )
+    }
+
     return (
         <>
             <Layout name={user.name} />
@@ -101,7 +112,7 @@ const ShowStudentAttendance = () => {
                                         <tr key={index}>
                                             <td>{item[0].student_nim}</td>
                                             <td>{item[0].student_name}</td>
-                                            <td>{item[0].student_date_of_birth}</td>
+                                            <Button variant="success" onclick={incrementAttendance(item[0].student_nim)}> + </Button>
                                         </tr>
                                     )
                                 })}
