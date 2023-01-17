@@ -112,7 +112,7 @@ const ShowStudentAttendance = () => {
                                         <tr key={index}>
                                             <td>{item[0].student_nim}</td>
                                             <td>{item[0].student_name}</td>
-                                            <Button variant="success" onclick={incrementAttendance(item[0].student_nim)}> + </Button>
+                                            <td><Button variant="success" onClick={incrementAttendance(item[0].student_nim)} > + </Button></td>
                                         </tr>
                                     )
                                 })}
